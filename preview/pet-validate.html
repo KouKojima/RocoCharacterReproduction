@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>pet shader check</title>
+<style>
+body{font:13px/1.5 ui-monospace,Consolas,monospace;background:#14181c;color:#dfe6ec;margin:0;padding:16px}
+pre{white-space:pre-wrap}
+.ok{color:#7ee081}.bad{color:#ff6b6b}
+canvas{position:fixed;left:-10px;top:-10px;width:1px;height:1px}
+</style>
+</head>
+<body>
+<pre id="log">loading�?/pre>
+<canvas id="gl" width="1" height="1"></canvas>
+<script type="module">
+const log = document.getElementById('log');
+const lines = [];
+function say(text, cls){ lines.push(cls ? `<span class="${cls}">${text}</span>` : text); log.innerHTML = lines.join('\n'); }
+
+// JSON has no NaN/Infinity literal: the generator writes them as strings.
+function decodeValue(v){
+  if(v === 'nan') return NaN;
+  if(v === 'inf') return Infinity;
+  if(v === '-inf') return -Infinity;
+  return v;
+}
+function valueError(expected, got){
+  if(typeof expected === 'string'){
+    const e = decodeValue(expected);
+    if(Number.isNaN(e)) return Number.isNaN(got) ? 0 : Infinity;
+    return e === got ? 0 : Infinity;
+  }
+  return Math.abs(expected - got);
+}
+
+const vertexSource = `#version 300 es
+precision highp float;
+uniform vec4 uInNormal; uniform vec4 uInColor; uniform vec4 uInUv;
+uniform vec4 uInWorld; uniform vec4 uInScreen; uniform vec4 uInOutline;
+out vec4 pNormal; out vec4 pColor; out vec4 pUv; out vec4 pWorld;
+out vec4 pScreen; out vec4 pOutlineWidth;
+void main(){
+  pNormal=uInNormal; pColor=uInColor; pUv=uInUv; pWorld=uInWorld;
+  pScreen=uInScreen; pOutlineWidth=uInOutline;
+  vec2 p=vec2((gl_VertexID<<1)&2, gl_VertexID&2);
+  gl_Position=vec4(p*2.0-1.0,0.0,1.0);
+}`;
+
+const canvas = document.getElementById('gl');
+const gl = canvas.getContext('webgl2', { antialias:false, preserveDrawingBuffer:true });
+if(!gl){ say('WebGL2 unavailable', 'bad'); throw new Error('no webgl2'); }
+const floatExt = gl.getExtension('EXT_color_buffer_float');
+if(!floatExt){ say('EXT_color_buffer_float unavailable', 'bad'); throw new Error('no float render target'); }
+
+// render into a 1x1 float texture: the default framebuffer cannot be read
+// back as RGBA/FLOAT, and readPixels would silently return zeros.
+const target = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, target);
+gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, 1, 1, 0, gl.RGBA, gl.FLOAT, null);
+gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+const fbo = gl.createFramebuffer();
+gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, target, 0);
+if(gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE){
+  say('float framebuffer incomplete', 'bad'); throw new Error('incomplete fbo');
+}
+gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+// The float target must not stay bound to a texture unit the program samples
+// from: sampling the currently bound colour attachment is a feedback loop and
+// returns black (and raises INVALID_OPERATION) instead of the texture value.
+gl.activeTexture(gl.TEXTURE0);
+gl.bindTexture(gl.TEXTURE_2D, null);
+say('readback format: ' + gl.getParameter(gl.IMPLEMENTATION_COLOR_READ_FORMAT) +
+    ' type: ' + gl.getParameter(gl.IMPLEMENTATION_COLOR_READ_TYPE));
+
+function compile(type, source){
+  const shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
+    throw new Error('shader error: ' + gl.getShaderInfoLog(shader) + '\n' + source.split('\n').slice(0,40).join('\n'));
+  }
+  return shader;
+}
+function link(fragment){
+  const p = gl.createProgram();
+  gl.attachShader(p, compile(gl.VERTEX_SHADER, vertexSource));
+  gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fragment));
+  gl.linkProgram(p);
+  if(!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error('link error: ' + gl.getProgramInfoLog(p));
+  return p;
+}
+function makeTexture(rgba){
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  // WebGL2 follows ES 3.0: a float texture needs the sized internal format
+  // RGBA32F. The unsized (RGBA, FLOAT) combination is rejected and leaves an
+  // empty texture behind, which samples as (0,0,0,1).
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, 1, 1, 0, gl.RGBA, gl.FLOAT, new Float32Array(rgba));
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  return tex;
+}
+
+const data = await (await fetch('pet/pet-samples.json?t=' + Date.now())).json();
+const params = new URLSearchParams(location.search);
+const noDiscard = params.get('mode') === 'nodiscard';
+const report = {};
+let failed = false;
+
+// texture sanity check: does a 1x1 float texture come back with its value?
+{
+  const sanity = link('#version 300 es\nprecision highp float;\nuniform sampler2D uT;\n'
+    + 'layout(location=0) out vec4 outColor;\nlayout(location=1) out float outAux;\n'
+    + 'void main(){ outColor = texture(uT, vec2(0.5)); }');
+  gl.useProgram(sanity);
+  const tl = gl.getUniformLocation(sanity, 'uT');
+  gl.activeTexture(gl.TEXTURE0);
+  gl.bindTexture(gl.TEXTURE_2D, makeTexture([0.25, 0.5, 0.75, 1.0]));
+  gl.uniform1i(tl, 0);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+  gl.viewport(0,0,1,1);
+  gl.clearColor(0,0,0,0);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+  const sp = new Float32Array(4);
+  gl.readPixels(0,0,1,1,gl.RGBA,gl.FLOAT,sp);
+  say('texture sanity: ' + JSON.stringify(Array.from(sp)) + '   glError=' + gl.getError());
+}
+
+for(const [key, entry] of Object.entries(data.programs)){
+  let source = '#version 300 es\n' + await (await fetch('pet/' + entry.glsl + '?t=' + Date.now())).text();
+  if(noDiscard) source = source.replace(/discard;/g, ';');
+  let program;
+  try{
+    program = link(source);
+  }catch(error){
+    say(`${key}: ${error.message}`, 'bad');
+    failed = true;
+    continue;
+  }
+  gl.useProgram(program);
+  const loc = name => gl.getUniformLocation(program, name);
+  const matLoc = loc('uMat');
+  const inputLocs = { vNormal:loc('uInNormal'), vColor:loc('uInColor'), vUv:loc('uInUv'),
+                      vWorldPosition:loc('uInWorld'), vScreen:loc('uInScreen'), vOutlineWidth:loc('uInOutline') };
+  const samplerNames = ['uBase','uMask','uRamp','uEyeAtlas','uOutlineMask'];
+  const samplerLocs = {};
+  for(const name of samplerNames) samplerLocs[name] = loc(name);
+
+  gl.viewport(0,0,1,1);
+  gl.disable(gl.DEPTH_TEST);
+  gl.disable(gl.BLEND);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+  const pixel = new Float32Array(4);
+  let maxError = 0, discardedMatches = 0, compared = 0;
+  const failures = [];
+
+  for(const sample of entry.samples){
+    if(matLoc){
+      const flat = new Float32Array(64*4);
+      sample.uniforms.uMat.forEach((row,i)=>{ flat.set(row, i*4); });
+      gl.uniform4fv(matLoc, flat);
+    }
+    for(const [name, value] of Object.entries(sample.uniforms)){
+      if(name === 'uMat') continue;
+      const l = loc(name);
+      if(l === null) continue;
+      if(typeof value === 'number') gl.uniform1f(l, value);
+      else gl.uniform4fv(l, new Float32Array(value));
+    }
+    for(const [name, value] of Object.entries(sample.inputs)){
+      const l = inputLocs[name];
+      if(l === null) continue;
+      const padded = new Float32Array(4); padded.set(value.slice(0,4));
+      gl.uniform4fv(l, padded);
+    }
+    for(const name of samplerNames){
+      const l = samplerLocs[name];
+      if(l === null) continue;
+      gl.activeTexture(gl.TEXTURE0 + samplerNames.indexOf(name));
+      gl.bindTexture(gl.TEXTURE_2D, makeTexture(sample.textures[name]));
+      gl.uniform1i(l, samplerNames.indexOf(name));
+    }
+    gl.clearColor(0,0,0,0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    gl.readPixels(0,0,1,1,gl.RGBA,gl.FLOAT,pixel);
+    const got = [pixel[0], pixel[1], pixel[2]];
+    const wasDiscarded = pixel[3] === 0 && got.every(x => x === 0);
+    if(noDiscard){
+      const error = Math.max(...got.map((v,i)=>valueError(sample.expected[i], v)));
+      maxError = Math.max(maxError, error);
+      compared++;
+      if(error > 1e-4 && failures.length < 5) failures.push({expected:sample.expected, got, error});
+      continue;
+    }
+    if(sample.discarded){
+      if(wasDiscarded) discardedMatches++;
+      else failures.push({expected:'discard', got});
+      continue;
+    }
+    if(wasDiscarded){ failures.push({expected:'colour', got, note:'unexpected discard'}); continue; }
+    const error = Math.max(...got.map((v,i)=>valueError(sample.expected[i], v)));
+    maxError = Math.max(maxError, error);
+    compared++;
+    if(error > 1e-4 && failures.length < 5) failures.push({expected:sample.expected, got, error});
+  }
+  const ok = maxError <= 1e-4 && failures.length === 0;
+  if(!ok) failed = true;
+  report[key] = {compared, maxError, failures: failures.slice(0,3)};
+  say(`${ok?'PASS':'FAIL'}  ${key}  compared=${compared}  maxAbsError=${maxError.toExponential(3)}  failures=${failures.length}`, ok?'ok':'bad');
+}
+window.petReport = report;
+say(failed ? 'RESULT: FAILED' : 'RESULT: PASSED', failed?'bad':'ok');
+</script>
+</body>
+</html>

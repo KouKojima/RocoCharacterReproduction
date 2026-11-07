@@ -1,0 +1,35 @@
+# 构建产物
+bin/
+obj/
+preview/app.bundle.js
+preview/test-multi.html
+preview/node_modules/
+
+# 轻量包提供的原生库（不入库，见 docs/04）
+native/
+*.dll
+*.lib
+*.pdb
+
+# 提取与装配产物（含游戏原始素材）
+work/
+out/
+out2/
+out_anim/
+chars/
+npcmats/
+petmats/
+libscan/
+charscan/
+locconf*/
+npcscan/
+probe_out/
+multi/
+
+# 精灵着色器二分探针（一次性调试残留，验证台不需要）
+preview/pet/pet-probe*-[0-9]*.glsl
+
+# 系统
+Thumbs.db
+.DS_Store
+desktop.ini

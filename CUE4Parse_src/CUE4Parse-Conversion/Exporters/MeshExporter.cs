@@ -1,0 +1,63 @@
+using CUE4Parse_Conversion.Dto;
+using CUE4Parse_Conversion.Formats.Meshes;
+using CUE4Parse_Conversion.Options;
+using CUE4Parse.UE4.Assets.Exports;
+using CUE4Parse.UE4.Assets.Exports.Material;
+using CUE4Parse.UE4.Objects.UObject;
+
+namespace CUE4Parse_Conversion.Exporters;
+
+public abstract class MeshExporter<T>(T mesh) : ExporterBase(mesh) where T : UObject
+{
+    protected T Mesh { get; } = mesh;
+
+    protected abstract IReadOnlyList<ExportFile> BuildFiles(T original, IMeshExportFormat format);
+
+    protected virtual IEnumerable<FPackageIndex?> MaterialReferences => [];
+
+    internal override IEnumerable<UObject> GetDependencies(CancellationToken ct)
+    {
+        foreach (var reference in MaterialReferences)
+        {
+            ct.ThrowIfCancellationRequested();
+            if (reference?.TryLoad<UMaterialInterface>(out var material) == true) yield return material;
+        }
+    }
+
+    protected override IReadOnlyList<ExportFile> BuildExportFiles(CancellationToken ct = default)
+    {
+        Log.Debug("Converting mesh to {Format} at {Quality} quality ({NaniteFormat})", Session.Options.MeshFormat, Session.Options.MeshQuality, Session.Options.NaniteMeshFormat);
+
+        return BuildFiles(Mesh, GetMeshFormat(Session.Options.MeshFormat));
+    }
+
+    protected Dictionary<string, string>? EnqueueMaterials(params MeshMaterialDto[] materials)
+    {
+        if (!Session.Options.ExportMaterials) return null;
+
+        // TODO: currently only usda needs such thing, but maybe other formats will need it in the future, so we can keep it for now
+        var paths = Session.Options.MeshFormat == EMeshFormat.USD
+            ? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            : null;
+
+        foreach (var slot in materials)
+        {
+            if (slot.Material?.TryLoad<UMaterialInterface>(out var material) == true)
+            {
+                Session.Add(material);
+                paths?[slot.Name] = Resolve(material, "usda");
+            }
+        }
+
+        return paths;
+    }
+
+    private IMeshExportFormat GetMeshFormat(EMeshFormat format) => format switch
+    {
+        EMeshFormat.ActorX => new ActorXMeshFormat(),
+        EMeshFormat.Gltf2 => new GltfMeshFormat(Session),
+        EMeshFormat.UEFormat => new UEFormatMeshFormat(),
+        EMeshFormat.USD => new UsdMeshFormat(),
+        _ => throw new NotSupportedException($"Mesh export does not support format {format}. Available formats: {string.Join(", ", Enum.GetNames<EMeshFormat>())}")
+    };
+}

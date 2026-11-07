@@ -1,0 +1,18 @@
+# 预览单文件是单行超长文本，避免逐行 diff 把它撑爆
+dist/*.html linguist-generated=true -diff
+preview/app.bundle.js linguist-generated=true -diff
+
+# 着色器与样本数据按文本处理
+*.glsl text
+*.rgba binary
+*.bin binary
+
+# 默认按文本处理
+*.cs text
+*.csproj text
+*.py text
+*.js text
+*.mjs text
+*.json text
+*.md text
+*.ps1 text eol=lf

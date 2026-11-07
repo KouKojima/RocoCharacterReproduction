@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>pet shader instruction probe</title>
+<style>
+body{font:13px/1.5 ui-monospace,Consolas,monospace;background:#14181c;color:#dfe6ec;margin:0;padding:16px}
+pre{white-space:pre-wrap}
+.ok{color:#7ee081}.bad{color:#ff6b6b}
+canvas{position:fixed;left:-10px;top:-10px;width:1px;height:1px}
+</style>
+</head>
+<body>
+<pre id="log">loading...</pre>
+<canvas id="gl" width="1" height="1"></canvas>
+<script type="module">
+const log = document.getElementById('log');
+const lines = [];
+function say(text, cls){ lines.push(cls ? `<span class="${cls}">${text}</span>` : text); log.innerHTML = lines.join('\n'); }
+
+const params = new URLSearchParams(location.search);
+const key = params.get('key') || 'body';
+const probe = params.get('n') || '53';
+
+const vertexSource = `#version 300 es
+precision highp float;
+uniform vec4 uInNormal; uniform vec4 uInColor; uniform vec4 uInUv;
+uniform vec4 uInWorld; uniform vec4 uInScreen; uniform vec4 uInOutline;
+out vec4 pNormal; out vec4 pColor; out vec4 pUv; out vec4 pWorld;
+out vec4 pScreen; out vec4 pOutlineWidth;
+void main(){
+  pNormal=uInNormal; pColor=uInColor; pUv=uInUv; pWorld=uInWorld;
+  pScreen=uInScreen; pOutlineWidth=uInOutline;
+  vec2 p=vec2((gl_VertexID<<1)&2, gl_VertexID&2);
+  gl_Position=vec4(p*2.0-1.0,0.0,1.0);
+}`;
+
+const canvas = document.getElementById('gl');
+const gl = canvas.getContext('webgl2', { antialias:false, preserveDrawingBuffer:true });
+if(!gl){ say('WebGL2 unavailable', 'bad'); throw new Error('no webgl2'); }
+if(!gl.getExtension('EXT_color_buffer_float')){ say('EXT_color_buffer_float unavailable', 'bad'); throw new Error('no float target'); }
+
+// render into a 1x1 float texture: the default framebuffer cannot be read
+// back as RGBA/FLOAT, and readPixels would silently return zeros.
+const target = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, target);
+gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, 1, 1, 0, gl.RGBA, gl.FLOAT, null);
+gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+const fbo = gl.createFramebuffer();
+gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, target, 0);
+if(gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE){
+  say('float framebuffer incomplete', 'bad'); throw new Error('incomplete fbo');
+}
+gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
+function compile(type, source){
+  const shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
+    throw new Error('shader error: ' + gl.getShaderInfoLog(shader));
+  }
+  return shader;
+}
+function link(fragment, vertex){
+  const p = gl.createProgram();
+  gl.attachShader(p, compile(gl.VERTEX_SHADER, vertex || vertexSource));
+  gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fragment));
+  gl.linkProgram(p);
+  if(!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error('link error: ' + gl.getProgramInfoLog(p));
+  return p;
+}
+function makeTexture(rgba){
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.FLOAT, new Float32Array(rgba));
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  return tex;
+}
+
+const stamp = Date.now();
+let fetchStamp = 0;
+const fetchText = async path => fetch(path + '?t=' + (stamp + (fetchStamp++))).then(r => r.text());
+const fetchJson = async path => fetch(path + '?t=' + (stamp + (fetchStamp++))).then(r => r.json());
+const samples = (await fetchJson('pet/pet-samples.json')).programs[key].samples;
+const probes = await fetchJson('pet/pet-probe-' + key + '.json');
+const wanted = probe === 'all' ? Object.keys(probes) : [probe];
+const report = {};
+
+for(const count of wanted){
+  const entry = probes[count];
+  if(!entry){ say('no probe ' + count + ' for ' + key, 'bad'); continue; }
+  let program;
+  try{ program = link('#version 300 es\n' + await fetchText('pet/' + entry.glsl)); }
+  catch(error){ say('probe ' + count + ': ' + error.message, 'bad'); continue; }
+
+  gl.useProgram(program);
+  const loc = name => gl.getUniformLocation(program, name);
+  const matLoc = loc('uMat');
+  const inputLocs = { vNormal:loc('uInNormal'), vColor:loc('uInColor'), vUv:loc('uInUv'),
+                      vWorldPosition:loc('uInWorld'), vScreen:loc('uInScreen'), vOutlineWidth:loc('uInOutline') };
+  const samplerNames = ['uBase','uMask','uRamp','uEyeAtlas','uOutlineMask'];
+  const samplerLocs = {};
+  for(const name of samplerNames) samplerLocs[name] = loc(name);
+  if(count === wanted[0]){
+    say('input uniform locations: ' + JSON.stringify(Object.fromEntries(
+      Object.entries(inputLocs).map(([k,v])=>[k, v===null?'MISSING':'ok']))));
+    // echo test: the very same probe program, but the final write replaced, so
+    // we can see what the fragment shader receives.
+    const probeSource = await fetchText('pet/' + entry.glsl);
+    const s0 = samples[0];
+    const padded0 = new Float32Array(4); padded0.set(s0.inputs.vColor.slice(0,4));
+    const variants = {
+      'pColor only'      : 'outColor = pColor;\n',
+      'r0.x + pColor.yz' : 'outColor = vec4(r0.x, pColor.y, pColor.z, 1.0);\n',
+      'pColor.x + r0.yz' : 'outColor = vec4(pColor.x, r0.y, r0.z, 1.0);\n',
+      'alive+ltvec.x'    : 'outColor = vec4(r0.x, vec4(lessThan(pColor.zzzz, vec4(0.1))).x, 0.0, 1.0);\n',
+    };
+    // candidate select forms, each evaluated with a false and a true condition
+    const forms = {
+      'mix'  : c => `mix(vec4(0.0), vec4(-1.0), ${c})`,
+      'mixI' : c => `mix(vec4(-1.0), vec4(0.0), ${c})`,
+      'sub'  : c => `vec4(0.0) - ${c}`,
+      'mul'  : c => `(-1.0) * ${c}`,
+      'lerp' : c => `vec4(2.0) + (vec4(-1.0) - vec4(2.0)) * ${c}`,
+      'step' : c => `vec4(-1.0) + ${c}`,
+    };
+    for(const [fname, form] of Object.entries(forms)){
+      for(const [tname, thr] of [['F',0.1],['T',0.5]]){
+        const c = `vec4(lessThan(pColor.zzzz, vec4(${thr})))`;
+        variants[`${fname}/${tname}`] = `outColor = vec4(r0.x, (${form(c)}).x, 0.0, 1.0);\n`;
+      }
+    }
+    for(const [label, tail] of Object.entries(variants)){
+      const echoSource = probeSource.replace(/outColor = vec4\(r0\.x[^\n]*\n/, tail);
+      if(label === Object.keys(variants)[0]){
+        say('echo source has discard: ' + echoSource.includes('discard')
+            + '   lines: ' + echoSource.split('\n').length
+            + '   tail: ' + echoSource.split('\n').slice(-3).join(' | '));
+      }
+      const echo = link('#version 300 es\n' + echoSource);
+      gl.useProgram(echo);
+      const eLoc = n => gl.getUniformLocation(echo, n);
+      const colourLoc = eLoc('uInColor');
+      if(colourLoc !== null) gl.uniform4fv(colourLoc, padded0);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+      gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      const echoPixel = new Float32Array(4);
+      gl.readPixels(0,0,1,1,gl.RGBA,gl.FLOAT,echoPixel);
+      const held = colourLoc === null ? 'LOC-MISSING' : JSON.stringify(gl.getUniform(echo, colourLoc));
+      say('echo[' + label + '] = ' + JSON.stringify(Array.from(echoPixel)) + '   uInColor=' + held);
+    }
+    say('expected vColor = ' + JSON.stringify(s0.inputs.vColor));
+
+    // renaming experiments: ANGLE may map a varying named like a colour
+    // semantic, or collide with the translated register globals.
+    const vertexRenamed = `#version 300 es
+precision highp float;
+uniform vec4 uInNormal; uniform vec4 uInColor; uniform vec4 uInUv;
+uniform vec4 uInWorld; uniform vec4 uInScreen; uniform vec4 uInOutline;
+out vec4 vNrm; out vec4 vCol; out vec4 vUv; out vec4 vPos;
+out vec4 vScr; out vec4 vOut;
+void main(){
+  vNrm=uInNormal; vCol=uInColor; vUv=uInUv; vPos=uInWorld;
+  vScr=uInScreen; vOut=uInOutline;
+  vec2 p=vec2((gl_VertexID<<1)&2, gl_VertexID&2);
+  gl_Position=vec4(p*2.0-1.0,0.0,1.0);
+}`;
+    const renameVaryings = s => s.replace(/pNormal/g,'vNrm').replace(/pColor/g,'vCol')
+                                .replace(/pUv/g,'vUv').replace(/pWorld/g,'vPos')
+                                .replace(/pScreen/g,'vScr').replace(/pOutlineWidth/g,'vOut');
+    const renameGlobals = s => s.replace(/\br(\d+)\b/g,'nrcR$1');
+    const experiments = [
+      ['baseline'     , probeSource,                                  vertexSource],
+      ['renamed vary' , renameVaryings(probeSource),                   vertexRenamed],
+      ['renamed regs' , renameGlobals(probeSource),                   vertexSource],
+      ['both renamed' , renameGlobals(renameVaryings(probeSource)),   vertexRenamed],
+    ];
+    for(const [label, src, vsrc] of experiments){
+      let prog;
+      try{ prog = link('#version 300 es\n' + src, vsrc); }
+      catch(err){ say('experiment[' + label + '] link failed: ' + err.message); continue; }
+      gl.useProgram(prog);
+      const pLoc = n => gl.getUniformLocation(prog, n);
+      const cLoc = pLoc('uInColor');
+      if(cLoc !== null) gl.uniform4fv(cLoc, padded0);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+      gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      const px = new Float32Array(4);
+      gl.readPixels(0,0,1,1,gl.RGBA,gl.FLOAT,px);
+      say('experiment[' + label + '] r0 = ' + JSON.stringify(Array.from(px).slice(0,3)));
+    }
+    gl.useProgram(program);
+    const padded1 = new Float32Array(4); padded1.set(s0.inputs.vColor.slice(0,4));
+    gl.uniform4fv(inputLocs.vColor, padded1);
+    say('probe program uInColor holds: ' + JSON.stringify(gl.getUniform(program, inputLocs.vColor)));
+  }
+
+  gl.viewport(0,0,1,1);
+  gl.disable(gl.DEPTH_TEST);
+  gl.disable(gl.BLEND);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+  const pixel = new Float32Array(4);
+  let maxError = 0, firstBad = -1;
+  const worst = [];
+
+  for(let i = 0; i < samples.length; i++){
+    const sample = samples[i];
+    if(matLoc){
+      const flat = new Float32Array(64*4);
+      sample.uniforms.uMat.forEach((row,j)=>{ flat.set(row, j*4); });
+      gl.uniform4fv(matLoc, flat);
+    }
+    for(const [name, value] of Object.entries(sample.uniforms)){
+      if(name === 'uMat') continue;
+      const l = loc(name);
+      if(l === null) continue;
+      if(typeof value === 'number') gl.uniform1f(l, value);
+      else gl.uniform4fv(l, new Float32Array(value));
+    }
+    for(const [name, value] of Object.entries(sample.inputs)){
+      const l = inputLocs[name];
+      if(l === null) continue;
+      const padded = new Float32Array(4); padded.set(value.slice(0,4));
+      gl.uniform4fv(l, padded);
+    }
+    for(const name of samplerNames){
+      const l = samplerLocs[name];
+      if(l === null) continue;
+      gl.activeTexture(gl.TEXTURE0 + samplerNames.indexOf(name));
+      gl.bindTexture(gl.TEXTURE_2D, makeTexture(sample.textures[name]));
+      gl.uniform1i(l, samplerNames.indexOf(name));
+    }
+    gl.clearColor(0,0,0,0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    gl.readPixels(0,0,1,1,gl.RGBA,gl.FLOAT,pixel);
+    const want = entry.expected[i];
+    const got = [pixel[0], pixel[1], pixel[2]];
+    const error = Math.max(...got.map((v,j)=>Math.abs(v - want[j])));
+    if(error > maxError){ maxError = error; }
+    if(error > 1e-4){
+      if(firstBad < 0) firstBad = i;
+      if(worst.length < 2) worst.push({i, want, got});
+    }
+  }
+  const ok = maxError <= 1e-4;
+  report[count] = {maxError, firstBad, worst};
+  say(`${ok?'PASS':'FAIL'}  ${key} probe after ${count} instructions   maxAbsError=${maxError.toExponential(3)}   firstBadSample=${firstBad}`, ok?'ok':'bad');
+  for(const w of worst) say('     sample ' + w.i + ' want=' + JSON.stringify(w.want) + ' got=' + JSON.stringify(w.got));
+}
+window.probeReport = report;
+say('DONE');
+</script>
+</body>
+</html>

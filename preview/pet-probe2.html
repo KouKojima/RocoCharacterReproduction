@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>pet shader instruction bisect</title>
+<style>
+body{font:13px/1.5 ui-monospace,Consolas,monospace;background:#14181c;color:#dfe6ec;margin:0;padding:16px}
+pre{white-space:pre-wrap}
+.ok{color:#7ee081}.bad{color:#ff6b6b}.dim{color:#8a97a3}
+canvas{position:fixed;left:-10px;top:-10px;width:1px;height:1px}
+</style>
+</head>
+<body>
+<pre id="log">loading…</pre>
+<canvas id="gl" width="4" height="1"></canvas>
+<script type="module">
+const log = document.getElementById('log');
+const lines = [];
+function say(text, cls){ lines.push(cls ? `<span class="${cls}">${text}</span>` : text); log.innerHTML = lines.join('\n'); }
+window.addEventListener('error', e => say('ERROR: ' + (e.message || e.error) + ' @ ' + e.filename + ':' + e.lineno, 'bad'));
+window.addEventListener('unhandledrejection', e => say('REJECT: ' + (e.reason && e.reason.message || e.reason), 'bad'));
+
+// JSON has no NaN/Infinity literal: the generator writes them as strings.
+function decodeValue(v){
+  if(v === 'nan') return NaN;
+  if(v === 'inf') return Infinity;
+  if(v === '-inf') return -Infinity;
+  return v;
+}
+function valueError(expected, got){
+  if(typeof expected === 'string'){
+    const e = decodeValue(expected);
+    if(Number.isNaN(e)) return Number.isNaN(got) ? 0 : Infinity;
+    return e === got ? 0 : Infinity;
+  }
+  return Math.abs(expected - got);
+}
+function fmt(v){
+  if(typeof v === 'string') return v;
+  if(!Number.isFinite(v)) return String(v);
+  return v.toFixed(4);
+}
+
+const vertexSource = `#version 300 es
+precision highp float;
+uniform vec4 uInNormal; uniform vec4 uInColor; uniform vec4 uInUv;
+uniform vec4 uInWorld; uniform vec4 uInScreen; uniform vec4 uInOutline;
+out vec4 pNormal; out vec4 pColor; out vec4 pUv; out vec4 pWorld;
+out vec4 pScreen; out vec4 pOutlineWidth;
+void main(){
+  pNormal=uInNormal; pColor=uInColor; pUv=uInUv; pWorld=uInWorld;
+  pScreen=uInScreen; pOutlineWidth=uInOutline;
+  vec2 p=vec2((gl_VertexID<<1)&2, gl_VertexID&2);
+  gl_Position=vec4(p*2.0-1.0,0.0,1.0);
+}`;
+
+const canvas = document.getElementById('gl');
+const gl = canvas.getContext('webgl2', { antialias:false, preserveDrawingBuffer:true });
+if(!gl){ say('WebGL2 unavailable','bad'); throw new Error('no webgl2'); }
+if(!gl.getExtension('EXT_color_buffer_float')){ say('EXT_color_buffer_float unavailable','bad'); throw new Error('no float rt'); }
+
+const target = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, target);
+gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, 4, 1, 0, gl.RGBA, gl.FLOAT, null);
+gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+const fbo = gl.createFramebuffer();
+gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, target, 0);
+if(gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE){ say('fbo incomplete','bad'); throw new Error('fbo'); }
+gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+// the float target must not stay bound to a texture unit the program samples
+// from: a feedback loop makes the sampler read black instead of the texture.
+gl.activeTexture(gl.TEXTURE0);
+gl.bindTexture(gl.TEXTURE_2D, null);
+
+function compile(type, source){
+  const shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
+    throw new Error('shader error: ' + gl.shaderInfoLog(shader));
+  }
+  return shader;
+}
+function link(fragment){
+  const p = gl.createProgram();
+  gl.attachShader(p, compile(gl.VERTEX_SHADER, vertexSource));
+  gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fragment));
+  gl.linkProgram(p);
+  if(!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error('link error: ' + gl.getProgramInfoLog(p));
+  return p;
+}
+function makeTexture(rgba){
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  // WebGL2 follows ES 3.0: a float texture needs the sized internal format
+  // RGBA32F. The unsized (RGBA, FLOAT) combination is rejected and leaves an
+  // empty texture behind, which samples as (0,0,0,1).
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, 1, 1, 0, gl.RGBA, gl.FLOAT, new Float32Array(rgba));
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  return tex;
+}
+
+const params = new URLSearchParams(location.search);
+const KEYS = (params.get('key') || 'body,body1,eyes,outline').split(',').filter(Boolean);
+const MAX = parseInt(params.get('max') || '0', 10);
+
+const samples = await (await fetch('pet/pet-samples.json?t=' + Date.now())).json();
+say('samples loaded');
+const samplerNames = ['uBase','uMask','uRamp','uEyeAtlas','uOutlineMask'];
+const pixel = new Float32Array(16);
+
+async function runKey(KEY){
+  const probe = await (await fetch('pet/pet-probe2-' + KEY + '.json?t=' + Date.now())).json();
+  say('probe json loaded: ' + KEY);
+  const programs = new Map();
+  const entry0 = probe.probes[Object.keys(probe.probes)[0]];
+  say(`program ${KEY}: ${probe.total} instructions, ${Object.keys(probe.probes).length} probe points, ${entry0.expected.length} samples`);
+
+  async function runProbe(count){
+    const entry = probe.probes[String(count)];
+    if(!entry) return null;
+    if(!programs.has(count)){
+      const source = '#version 300 es\n' + await (await fetch('pet/' + entry.glsl + '?t=' + Date.now())).text();
+      programs.set(count, link(source));
+    }
+    const program = programs.get(count);
+    gl.useProgram(program);
+    const loc = name => gl.getUniformLocation(program, name);
+    const matLoc = loc('uMat');
+    const inputLocs = { vNormal:loc('uInNormal'), vColor:loc('uInColor'), vUv:loc('uInUv'),
+                        vWorldPosition:loc('uInWorld'), vScreen:loc('uInScreen'), vOutlineWidth:loc('uInOutline') };
+    const samplerLocs = {};
+    for(const name of samplerNames) samplerLocs[name] = loc(name);
+    gl.viewport(0,0,4,1);
+    gl.disable(gl.DEPTH_TEST);
+    gl.disable(gl.BLEND);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+
+    const results = [];
+    for(const sample of samples.programs[KEY].samples.slice(0, entry.expected.length)){
+      if(matLoc){
+        const flat = new Float32Array(64*4);
+        sample.uniforms.uMat.forEach((row,i)=>flat.set(row, i*4));
+        gl.uniform4fv(matLoc, flat);
+      }
+      for(const [name, value] of Object.entries(sample.uniforms)){
+        if(name === 'uMat') continue;
+        const l = loc(name);
+        if(l === null) continue;
+        if(typeof value === 'number') gl.uniform1f(l, value);
+        else gl.uniform4fv(l, new Float32Array(value));
+      }
+      for(const [name, value] of Object.entries(sample.inputs)){
+        const l = inputLocs[name];
+        if(l === null) continue;
+        const padded = new Float32Array(4); padded.set(value.slice(0,4));
+        gl.uniform4fv(l, padded);
+      }
+      for(const name of samplerNames){
+        const l = samplerLocs[name];
+        if(l === null) continue;
+        const unit = samplerNames.indexOf(name);
+        gl.activeTexture(gl.TEXTURE0 + unit);
+        gl.bindTexture(gl.TEXTURE_2D, makeTexture(sample.textures[name]));
+        gl.uniform1i(l, unit);
+      }
+      gl.clearColor(0,0,0,0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      gl.readPixels(0,0,4,1,gl.RGBA,gl.FLOAT,pixel);
+      results.push(Array.from(pixel));
+    }
+    return results;
+  }
+
+  function compare(count, results){
+    const expected = probe.probes[String(count)].expected;
+    let worst = 0, worstAt = null;
+    for(let s=0; s<expected.length; s++){
+      for(let r=0; r<4; r++){
+        for(let c=0; c<4; c++){
+          const e = expected[s][r][c];
+          const g = results[s][r*4+c];
+          const err = valueError(e, g);
+          if(err > worst){ worst = err; worstAt = {sample:s, reg:'r'+r, comp:'xyzw'[c], expected:e, got:g}; }
+        }
+      }
+    }
+    return {worst, worstAt};
+  }
+
+  const counts = Object.keys(probe.probes).map(Number).sort((a,b)=>a-b);
+  const limit = MAX > 0 ? counts.filter(c=>c<=MAX) : counts;
+  let firstBad = null;
+  let last = null;
+  for(const count of limit){
+    let results;
+    try{ results = await runProbe(count); }
+    catch(error){ say(`  ${KEY} count ${count}: ${error.message}`,'bad'); break; }
+    const cmp = compare(count, results);
+    if(last !== null && count - last > 1) say(`  ... ${count - last - 1} probe points skipped (inside a branch)`,'dim');
+    last = count;
+    if(cmp.worst > 1e-4){ firstBad = {count, cmp, results}; break; }
+  }
+
+  if(!firstBad){
+    say(`PASS  ${KEY}: no divergence in ${limit.length} probe points (up to instruction ${limit[limit.length-1]})`,'ok');
+    return true;
+  }
+  const {count, cmp} = firstBad;
+  say(`FAIL  ${KEY}: first divergence at instruction ${count}`,'bad');
+  for(let i=Math.max(0,count-4); i<Math.min(probe.ops.length,count+1); i++){
+    const mark = i === count-1 ? '>>' : '  ';
+    say(`${mark} ${String(i).padStart(3)}: ${probe.ops[i]}`, i===count-1?'bad':'dim');
+  }
+  const w = cmp.worstAt;
+  say(`  worst error ${cmp.worst.toExponential(4)}  sample ${w.sample} ${w.reg}.${w.comp}  expected ${w.expected}  got ${w.got}`,'bad');
+  const entry = probe.probes[String(count)];
+  for(let s=0; s<entry.expected.length; s++){
+    const parts = [];
+    for(let r=0; r<4; r++){
+      const e = entry.expected[s][r].map(fmt).join(',');
+      const g = [0,1,2,3].map(c=>fmt(firstBad.results[s][r*4+c])).join(',');
+      parts.push(`r${r}: exp[${e}] got[${g}]`);
+    }
+    say(`  sample ${s}: ${parts.join(' | ')}`);
+  }
+  return false;
+}
+
+let allOk = true;
+for(const key of KEYS){
+  const ok = await runKey(key);
+  if(!ok) allOk = false;
+}
+say(allOk ? 'RESULT: ALL PROGRAMS MATCH THE ORIGINAL PROGRAM' : 'RESULT: DIVERGENCE FOUND', allOk?'ok':'bad');
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>NrcChar</AssemblyName>
+    <RootNamespace>NrcChar</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CUE4Parse_src\CUE4Parse\CUE4Parse.csproj" />
+    <ProjectReference Include="..\..\CUE4Parse_src\CUE4Parse-Conversion\CUE4Parse-Conversion.csproj" />
+  </ItemGroup>
+  <!--
+    The ACL native decoder ships with the lightweight kit and is not vendored
+    here. Drop it in native/ at the repository root (see docs/04); the second
+    path keeps the original workspace layout working.
+  -->
+  <ItemGroup>
+    <None Include="..\..\native\CUE4Parse-Natives.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\..\native\CUE4Parse-Natives.dll')" />
+    <None Include="..\..\..\_unpack_guide\nrc-lightweight-kit\character\native\CUE4Parse-Natives.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\..\..\_unpack_guide\nrc-lightweight-kit\character\native\CUE4Parse-Natives.dll')" />
+  </ItemGroup>
+</Project>

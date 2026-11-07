@@ -1,0 +1,14 @@
+{
+  "name": "nrc-character-portable-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.11"
+  }
+}

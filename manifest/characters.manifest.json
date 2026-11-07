@@ -1,0 +1,47 @@
+{
+  "characters": [
+    {
+      "id": "npc00401",
+      "dir": "npc00401",
+      "label": "NPC_00401（参考角色）",
+      "npc": "NPC_00401",
+      "kernel": "npc",
+      "materials": {
+        "body": "MI_NPC_00401",
+        "face": "MI_NPC_00401_Fe",
+        "eyes": "MI_NPC_00401_Es",
+        "outline": "MI_NPC_00401_Outline",
+        "faceOutline": "MI_NPC_Fe_01_Outline"
+      }
+    },
+    {
+      "id": "npc01101",
+      "dir": "npc01101",
+      "label": "路易斯 NPC_01101",
+      "npc": "NPC_01101",
+      "kernel": "npc",
+      "materials": {
+        "body": "MI_NPC_01101",
+        "face": "MI_NPC_01101_Fe",
+        "eyes": "MI_NPC_01101_Es",
+        "outline": "MI_NPC_01101_Outline",
+        "faceOutline": "MI_NPC_Fe_03_Outline"
+      }
+    },
+    {
+      "id": "npc06201",
+      "dir": "npc06201",
+      "label": "伊里斯 NPC_06201",
+      "npc": "NPC_06201",
+      "kernel": "npc",
+      "materials": {
+        "body": "MI_NPC_06201",
+        "im": "MI_NPC_06201_Im",
+        "face": "MI_NPC_06201_Fe",
+        "eyes": "MI_NPC_06201_Es",
+        "outline": "MI_NPC_06201_Outline",
+        "faceOutline": "MI_NPC_Fe_03_Outline"
+      }
+    }
+  ]
+}
