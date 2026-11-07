@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {loadAsset,loadTextures,loadModel} from './assets.js';
+import {loadAsset,loadTextures,loadModel,loadMorph} from './assets.js';
 import {makeMaterial,makeOutline,makePost,makeGround} from './materials.js';
 import {loadNativeAnimation} from './animation.js';
 
 const $=id=>document.getElementById(id),canvas=$('viewport'),stage=$('stage');
-const state={body:true,face:true,eyes:true,outline:true,debug:0,outlineWidth:1,animateEyes:false,eyeSpeed:1,leftX:0,leftY:0,rightX:0,rightY:0,pupilScale:1,vertexControls:true,lightAzimuth:-35,lightElevation:38,sun:1,ambient:.65,shadow:.65,turntable:false,ground:true,lightSweep:false,animationClip:'World_Idle',faceClip:'none',poseName:'Reference',nativePlaying:true,nativeSpeed:1,nativeLoop:true,inPlace:true,faceWeight:1,poseWeight:1};
+const state={body:true,face:true,eyes:true,outline:true,morph:true,debug:0,outlineWidth:1,animateEyes:false,eyeSpeed:1,leftX:0,leftY:0,rightX:0,rightY:0,pupilScale:1,vertexControls:true,lightAzimuth:-35,lightElevation:38,sun:1,ambient:.65,shadow:.65,turntable:false,ground:true,lightSweep:false,animationClip:'World_Idle',faceClip:'none',poseName:'Reference',nativePlaying:true,nativeSpeed:1,nativeLoop:true,inPlace:true,faceWeight:1,poseWeight:1};
 const defaults={...state};
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.outputColorSpace=THREE.LinearSRGBColorSpace;renderer.toneMapping=THREE.NoToneMapping;
@@ -90,7 +90,7 @@ function setState(patch){
   if('animationClip'in patch)animator.setBody(patch.animationClip);
   if('faceClip'in patch)animator.setFace(patch.faceClip);
   if('poseName'in patch)animator.setPose(patch.poseName);
-  animator.playing=state.nativePlaying;animator.speed=state.nativeSpeed;animator.loop=state.nativeLoop;animator.inPlace=state.inPlace;animator.poseWeight=state.poseWeight;animator.faceWeight=state.faceWeight;animator.dirty=true;
+  animator.playing=state.nativePlaying;animator.speed=state.nativeSpeed;animator.loop=state.nativeLoop;animator.inPlace=state.inPlace;animator.poseWeight=state.poseWeight;animator.faceWeight=state.faceWeight;animator.morphEnabled=state.morph;animator.dirty=true;
  }
  lightUpdate();syncVisibility();shadowDirty=true;
 }
@@ -130,13 +130,20 @@ async function disposeCharacter(){
 async function loadCharacter(entry){
  await disposeCharacter();
  const root='assets/'+entry.dir+'/';
- const [textures,loadedModel,loadedMaterials]=await Promise.all([loadTextures(root),loadModel(root),loadAsset(root+'materials.json',true)]);
+ const [textures,loadedModel,loadedMaterials,loadedMorph]=await Promise.all([loadTextures(root),loadModel(root),loadAsset(root+'materials.json',true),loadMorph(root)]);
  assets=textures;model=loadedModel;materials=loadedMaterials;
  if(materials.hasAnimation){
   animator=await loadNativeAnimation(model,root+'animation/');
+  animator.setMorph(loadedMorph);
+  animator.morphEnabled=state.morph;
   if(animator.clips&&!animator.clips.has(animator.body)){const first=[...animator.clips.values()].find(c=>c.group==='body')||[...animator.clips.values()][0];if(first)animator.body=first.name;}
   populateAnimationControls();
- }else{for(const id of ['animationClip','faceClip','poseName','animationTimeline','faceTimeline','restartAnimation','nativePlaying','nativeSpeed','nativeLoop','inPlace','faceWeight','poseWeight'])if($(id))$(id).disabled=true;$('animationClip').innerHTML='<option>未提取动作 · 静态模式</option>';$('animationTime').textContent='静态参考姿势';$('nativeSource').textContent='未载入动作数据';}
+  // populateAnimationControls only rewrites the dropdowns; the animator still
+  // holds its construction defaults, so align it with the state the UI now
+  // shows or the two disagree after a character switch.
+  animator.setBody(state.animationClip);animator.setFace(state.faceClip);animator.setPose(state.poseName);
+  animator.playing=state.nativePlaying;animator.speed=state.nativeSpeed;animator.loop=state.nativeLoop;animator.inPlace=state.inPlace;animator.poseWeight=state.poseWeight;animator.faceWeight=state.faceWeight;animator.morphEnabled=state.morph;animator.dirty=true;
+ }else{for(const id of ['animationClip','faceClip','poseName','animationTimeline','faceTimeline','restartAnimation','nativePlaying','nativeSpeed','nativeLoop','inPlace','faceWeight','poseWeight','morph'])if($(id))$(id).disabled=true;$('animationClip').innerHTML='<option>未提取动作 · 静态模式</option>';$('animationTime').textContent='静态参考姿势';$('nativeSource').textContent='未载入动作数据';}
  const defs=materials.defs;
  const mats={};
  const surfaceKinds=['body','im','face','eyes'].filter(k=>k==='im'?!!materials.buffers.im:true);

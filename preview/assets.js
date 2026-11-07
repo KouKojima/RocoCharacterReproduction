@@ -27,6 +27,14 @@ export async function loadTextures(root='assets/'){
     texture.needsUpdate=true;texture.userData.native=m;result[m.name]=texture;
   }));return result;
 }
+export async function loadMorph(root='assets/'){
+ // Blend shapes are optional: a character without an extracted morph set
+ // simply has no face deformation, so a missing folder is not an error.
+ try{
+  const [targets,curves,buffer]=await Promise.all([loadAsset(root+'morph/targets.json',true),loadAsset(root+'morph/curves.json',true),loadAsset(root+'morph/deltas.bin')]);
+  return {targets,curves,buffer};
+ }catch(error){return null;}
+}
 export async function loadModel(root='assets/'){
   const [buffer,metadata]=await Promise.all([loadAsset(root+'character.bin'),loadAsset(root+'character.json',true)]);
   const head=new Uint32Array(buffer,0,4),[magic,nv,ni,nu]=head;if(magic!==0x4343524e)throw Error('模型数据头不正确');let offset=16;

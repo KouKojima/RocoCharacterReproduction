@@ -49,6 +49,14 @@ Step '装配角色（prepare_multi.py）'
     --data $Work --materials $materials --shaders $shaders --manifest $Manifest --out $out
 if ($LASTEXITCODE -ne 0) { throw "prepare_multi 失败 ($LASTEXITCODE)" }
 
+Step '导出变形目标与口型曲线（prepare_morph.py）'
+# 必须排在 prepare_multi 之后：prepare_multi 会重建 <out>/assets/<角色>/animation/。
+# 脚本从 chars/<角色>/animation-research/ 里读 morph-deltas.bin 与原生 clip 的浮点曲线，
+# 按名字配对后写到 <out>/assets/<角色>/morph/。没有变形目标的角色自动跳过，不报错。
+& $Python (Join-Path $repo 'tools/charextract/prepare_morph.py') `
+    --data $Work --chars (Join-Path $Work 'chars') --out (Join-Path $out 'preview' 'assets')
+if ($LASTEXITCODE -ne 0) { throw "prepare_morph 失败 ($LASTEXITCODE)" }
+
 Step '构建前端（esbuild）'
 Push-Location (Join-Path $repo 'preview')
 try {

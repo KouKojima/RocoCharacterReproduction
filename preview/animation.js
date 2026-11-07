@@ -94,11 +94,65 @@ class NativeAnimator{
    this.addPose(this.poseByName.get('EyeBlink'),weight);this.lastAuthoredBlink={time:this.displayFaceTime,rawValue:raw,appliedPositiveWeight:weight};
   }
   this.addPose(this.poseByName.get(this.pose),this.poseWeight);
+  this.applyMorph();
   this.computeWorld();for(let i=0;i<this.skin.length;i++)this.skin[i].multiplyMatrices(this.world[i],this.inverseBind[i]);
   if(this.headIndex>=0)this.headDelta.setFromMatrix4(this.skin[this.headIndex]);this.skinVertices();this.dirty=false;this.updated=true;return true;
  }
+ // ---- blend shapes ------------------------------------------------------
+ // The game drives the face with morph targets, not bones: the mesh carries
+ // the deltas and every AnimSequence carries float curves named exactly after
+ // those targets, so the curve value is the blend weight.
+ setMorph(data){
+  if(!data){this.morph=null;this.morphP=null;this.morphN=null;return;}
+  const view=new DataView(data.buffer),list=data.targets.targets,targets=[];
+  for(const {name,count,offset} of list){
+   const n=view.getInt32(offset,true);
+   if(n!==count)throw Error('变形目标顶点数不一致：'+name);
+   const ids=new Int32Array(n),pos=new Float32Array(n*3),nrm=new Float32Array(n*3);let o=offset+4;
+   for(let i=0;i<n;i++){
+    ids[i]=view.getInt32(o,true);o+=4;
+    pos[i*3]=view.getFloat32(o,true);pos[i*3+1]=view.getFloat32(o+4,true);pos[i*3+2]=view.getFloat32(o+8,true);o+=12;
+    nrm[i*3]=view.getFloat32(o,true);nrm[i*3+1]=view.getFloat32(o+4,true);nrm[i*3+2]=view.getFloat32(o+8,true);o+=12;
+   }
+   targets.push({name,count:n,ids,pos,nrm});
+  }
+  this.morph={targets,clips:data.curves.clips,index:new Map(targets.map((t,i)=>[t.name,i]))};
+  this.morphP=new Float32Array(this.baseP);this.morphN=new Float32Array(this.baseN);
+  this.morphWeights=new Float32Array(targets.length);this.morphEnabled=true;
+  this.morphActive=0;this.morphMaxWeight=0;this.lastMorph=null;
+ }
+ morphApplyClip(name,time,weights,blend){
+  const entry=this.morph?.clips[name];if(!entry)return 0;let used=0;
+  for(const curveName in entry.curves){const index=this.morph.index.get(curveName);if(index===undefined)continue;
+   const curve=entry.curves[curveName],raw=evaluateSourceCurve({interpolation:curve.interp,keys:curve.keys},time);
+   // Blend weights stay in [0,1]; cubic tangents can overshoot past a key.
+   const value=Math.max(0,Math.min(1,raw));
+   weights[index]=blend>=1?value:weights[index]*(1-blend)+value*blend;used++;
+  }return used;
+ }
+ applyMorph(){
+  if(!this.morph||!this.morphEnabled){this.morphP=null;this.morphN=null;return;}
+  if(!this.morphP)this.morphP=new Float32Array(this.baseP);
+  if(!this.morphN)this.morphN=new Float32Array(this.baseN);
+  this.morphWeights.fill(0);
+  const usedBody=this.morphApplyClip(this.body,this.displayTime,this.morphWeights,1);
+  const usedFace=this.morphApplyClip(this.face,this.displayFaceTime,this.morphWeights,this.faceWeight);
+  const w=this.morphWeights,list=this.morph.targets,baseP=this.baseP,baseN=this.baseN,mp=this.morphP,mn=this.morphN;
+  mp.set(baseP);mn.set(baseN);
+  let active=0,maxWeight=0,peak='';
+  for(let t=0;t<list.length;t++){
+   const weight=w[t];if(weight<=0)continue;
+   active++;if(weight>maxWeight){maxWeight=weight;peak=list[t].name;}
+   const target=list[t],ids=target.ids,pos=target.pos,nrm=target.nrm,count=target.count;
+   for(let k=0;k<count;k++){const v=ids[k]*3;
+    mp[v]+=weight*pos[k*3];mp[v+1]+=weight*pos[k*3+1];mp[v+2]+=weight*pos[k*3+2];
+    mn[v]+=weight*nrm[k*3];mn[v+1]+=weight*nrm[k*3+1];mn[v+2]+=weight*nrm[k*3+2];}
+  }
+  this.morphActive=active;this.morphMaxWeight=maxWeight;
+  this.lastMorph={usedBody,usedFace,active,maxWeight,peak};
+ }
  skinVertices(){
-  const p=this.baseP,n=this.baseN,t=this.baseT,outP=this.positions,outN=this.normals,outT=this.tangents,ids=this.ids,weights=this.weights,k=this.influences;
+  const p=this.morphP??this.baseP,n=this.morphN??this.baseN,t=this.baseT,outP=this.positions,outN=this.normals,outT=this.tangents,ids=this.ids,weights=this.weights,k=this.influences;
   for(let v=0;v<outP.length/3;v++){
    const i=v*3,j=v*4,px=p[i],py=p[i+1],pz=p[i+2],nx=n[i],ny=n[i+1],nz=n[i+2],tx=t[j],ty=t[j+1],tz=t[j+2];let x=0,y=0,z=0,a=0,b=0,c=0,d=0,e=0,f=0;
    for(let s=0;s<k;s++){const w=weights[v*k+s];if(w===0)continue;const m=this.skin[ids[v*k+s]].elements;
@@ -113,5 +167,5 @@ class NativeAnimator{
  bindError(){
   let err=0;for(let i=0;i<this.skin.length;i++){const m=new THREE.Matrix4().multiplyMatrices(this.world[i],this.inverseBind[i]).elements;for(let j=0;j<16;j++)err=Math.max(err,Math.abs(m[j]-(j%5===0?1:0)));}return err;
  }
- summary(){return {body:this.body,face:this.face,pose:this.pose,time:this.time,faceTime:this.faceTime,playing:this.playing,speed:this.speed,inPlace:this.inPlace,duration:this.duration,faceDuration:this.faceDuration,authoredBlink:this.lastAuthoredBlink,clipCount:this.clips.size,poseCount:this.poses.poses.length,bindError:this.referenceSkinError};}
+ summary(){return {body:this.body,face:this.face,pose:this.pose,time:this.time,faceTime:this.faceTime,playing:this.playing,speed:this.speed,inPlace:this.inPlace,duration:this.duration,faceDuration:this.faceDuration,authoredBlink:this.lastAuthoredBlink,clipCount:this.clips.size,poseCount:this.poses.poses.length,bindError:this.referenceSkinError,morphTargets:this.morph?.targets.length??0,morph:this.lastMorph};}
 }

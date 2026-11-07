@@ -1,6 +1,7 @@
 # 构建产物
 bin/
 obj/
+__pycache__/
 # 离线预览单文件（约 89 MB）：本地生成，不入库，避免仓库体积膨胀
 dist/
 preview/app.bundle.js
