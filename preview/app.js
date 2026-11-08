@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {loadAsset,loadTextures,loadModel,loadMorph,loadGaze} from './assets.js';
+import {loadAsset,loadTextures,loadModel,loadMorph,loadGaze,loadFacial} from './assets.js';
 import {makeMaterial,makeOutline,makePost,makeGround} from './materials.js';
 import {loadNativeAnimation,evaluateSourceCurve} from './animation.js';
 
@@ -19,7 +19,7 @@ shadowTarget.depthTexture=new THREE.DepthTexture(1536,1536,THREE.UnsignedIntType
 const shadowDepthMaterial=new THREE.MeshDepthMaterial({side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:3,polygonOffsetUnits:4});
 const shared={uLightDir:{value:lightDir},uLightColor:{value:new THREE.Vector3(1,.975,.94)},uAmbientColor:{value:new THREE.Vector3(.59,.64,.69)},uShadowMap:{value:shadowTarget.depthTexture},uShadowMatrix:{value:new THREE.Matrix4()},uShadowStrength:{value:state.shadow},uViewport:{value:new THREE.Vector2()},uInverseViewProjection:{value:new THREE.Matrix4()},uDebug:{value:0},uVertexControls:{value:1},uOutlineWidth:{value:1},uBasisX:{value:new THREE.Vector3(1,0,0)},uBasisY:{value:new THREE.Vector3(0,0,-1)},uBasisZ:{value:new THREE.Vector3(0,1,0)},uCameraRight:{value:new THREE.Vector3()},uCameraForward:{value:new THREE.Vector3()},uViewRotation:{value:new THREE.Matrix3()},uDirectScale:{value:1},uAmbientStrength:{value:state.ambient},uAmbientDesaturation:{value:0},uAmbientScale:{value:1},uColorDesaturation:{value:0},uShadowBias:{value:0},uAmbientDarkAdd:{value:0},uRimEnabled:{value:1}};
 const ground=makeGround(shared);scene.add(ground);const post=makePost(renderer);
-let assets,model,materials,animator,eyeUniforms,baseEyeRows,loaded=false,shadowDirty=true,lastLight='',elapsed=0,paused=false,viewMode='full',lastRotation=0,gazeData=null,lastGaze=null;
+let assets,model,materials,animator,eyeUniforms,baseEyeRows,loaded=false,shadowDirty=true,lastLight='',elapsed=0,paused=false,viewMode='full',lastRotation=0,gazeData=null,lastGaze=null,facialData=null;
 const faceBasis={uBasisX:{value:new THREE.Vector3(1,0,0)},uBasisY:{value:new THREE.Vector3(0,0,-1)},uBasisZ:{value:new THREE.Vector3(0,1,0)}};
 const matRows=rows=>Array.from({length:64},(_,i)=>new THREE.Vector4(...(rows[i]??[0,0,0,0])));
 
@@ -160,7 +160,12 @@ function drawFrame(dt){
  const rot=new THREE.Matrix4().makeScale(1,1,-1).multiply(camera.matrixWorldInverse);shared.uViewRotation.value.setFromMatrix4(rot);
  shared.uInverseViewProjection.value.copy(camera.projectionMatrix).multiply(camera.matrixWorldInverse).invert();renderShadow();post.render(scene,camera);
  if(animator&&animator.playing!==state.nativePlaying){state.nativePlaying=animator.playing;$('nativePlaying').checked=animator.playing;}
- if(animator){const d=animator.duration,t=animator.displayTime,fd=animator.faceDuration,ft=animator.displayFaceTime;$('animationTimeline').value=d?t/d:0;$('animationTime').textContent=t.toFixed(2)+' / '+d.toFixed(2)+' s';$('nativeSource').textContent=animator.body==='reference'?'原版参考姿势':animator.body;$('faceTimeline').disabled=!fd;$('faceTimeline').value=fd?ft/fd:0;$('faceTime-out').textContent=ft.toFixed(2)+' / '+fd.toFixed(2)+' s';$('authoredNote').classList.toggle('hidden',animator.face!=='authored_blink');}
+ if(animator){const d=animator.duration,t=animator.displayTime,fd=animator.faceDuration,ft=animator.displayFaceTime;$('animationTimeline').value=d?t/d:0;$('animationTime').textContent=t.toFixed(2)+' / '+d.toFixed(2)+' s';$('nativeSource').textContent=animator.body==='reference'?'原版参考姿势':animator.body;$('faceTimeline').disabled=!fd;$('faceTimeline').value=fd?ft/fd:0;$('faceTime-out').textContent=ft.toFixed(2)+' / '+fd.toFixed(2)+' s';const note=$('authoredNote');note.classList.toggle('hidden',animator.face!=='authored_blink'&&animator.face!=='authored_all');
+  if(animator.face==='authored_all'){
+   const f=animator.lastFacial,s=animator.facial?.stats;
+   note.textContent='原版 controllerConfig 多通道：'+(f?'本次施加 '+f.applied+' 个 pose，最大权重 '+f.maxWeight.toFixed(3):'未施加')+
+    '；jawOpen/blinkScale 通道未接入。'+(s&&s.missingPoses?' 本角色缺 '+s.missingPoses+' 个 pose 增量（无 PoseAsset），映射表仅作留档。':'');
+  }else note.textContent='使用原版 8.725 秒样例的 EyeBlink 曲线与原姿势；负值不施加闭眼，仅演示这一通道，未模拟整套口型混合。';}
 }
 function tick(now){
  // 必须先排下一帧：drawFrame 抛异常会让循环永久停摆，之后播放按钮全部失效，
@@ -180,17 +185,18 @@ async function disposeCharacter(){
  for(const o of outlines){character.remove(o);o.geometry?.dispose?.();o.material?.dispose?.();}
  if(assets)for(const t of Object.values(assets))t?.dispose?.();
  meshes.length=0;outlines.length=0;uniformSets.length=0;
- animator=null;eyeUniforms=null;baseEyeRows=null;gazeData=null;lastGaze=null;gazeNoteKey='';
+ animator=null;eyeUniforms=null;baseEyeRows=null;gazeData=null;lastGaze=null;gazeNoteKey='';facialData=null;
 }
 async function loadCharacter(entry){
  await disposeCharacter();
  const root='assets/'+entry.dir+'/';
- const [textures,loadedModel,loadedMaterials,loadedMorph,loadedGaze]=await Promise.all([loadTextures(root),loadModel(root),loadAsset(root+'materials.json',true),loadMorph(root),loadGaze(root)]);
- assets=textures;model=loadedModel;materials=loadedMaterials;gazeData=loadedGaze;
+ const [textures,loadedModel,loadedMaterials,loadedMorph,loadedGaze,loadedFacial]=await Promise.all([loadTextures(root),loadModel(root),loadAsset(root+'materials.json',true),loadMorph(root),loadGaze(root),loadFacial(root)]);
+ assets=textures;model=loadedModel;materials=loadedMaterials;gazeData=loadedGaze;facialData=loadedFacial;
  if(materials.hasAnimation){
   for(const id of animationControlIds)if($(id))$(id).disabled=false;
   animator=await loadNativeAnimation(model,root+'animation/');
   animator.setMorph(loadedMorph);
+  animator.setFacial(facialData);
   animator.morphEnabled=state.morph;
   if(animator.clips&&!animator.clips.has(animator.body)){const first=[...animator.clips.values()].find(c=>c.group==='body')||[...animator.clips.values()][0];if(first)animator.body=first.name;}
   populateAnimationControls();
@@ -232,7 +238,7 @@ async function init(){
   };
   await loadCharacter(characters[0]);
   $('loading').style.opacity='0';setTimeout(()=>$('loading').classList.add('hidden'),300);
-  window.preview={state,renderer,scene,camera,controls,meshes,outlines,uniforms:shared,eyeUniforms,setState,setView,render:()=>drawFrame(0),pause:(v=true)=>{paused=v;},setTime:t=>{elapsed=t;animator?.seek(t);updateEyes(t);drawFrame(0);},get time(){return elapsed;},get view(){return viewMode;},characters,get character(){return currentChar;},get materials(){return materials;},get gaze(){return lastGaze;},get gazeData(){return gazeData;},get animator(){return animator;},get model(){return model;},switchCharacter:id=>{sel.value=id;sel.onchange();},ready:true};
+  window.preview={state,renderer,scene,camera,controls,meshes,outlines,uniforms:shared,eyeUniforms,setState,setView,render:()=>drawFrame(0),pause:(v=true)=>{paused=v;},setTime:t=>{elapsed=t;animator?.seek(t);updateEyes(t);drawFrame(0);},get time(){return elapsed;},get view(){return viewMode;},characters,get character(){return currentChar;},get materials(){return materials;},get gaze(){return lastGaze;},get gazeData(){return gazeData;},get facialData(){return facialData;},get animator(){return animator;},get model(){return model;},switchCharacter:id=>{sel.value=id;sel.onchange();},ready:true};
   last=performance.now();requestAnimationFrame(tick);
  }catch(error){console.error(error);$('load-text').textContent='载入失败：'+error.message;$('load-text').classList.add('error');$('loading').querySelector('small').textContent='请按 character/START_HERE.txt 提取本机数据、构建并启动预览';}
 }
@@ -243,6 +249,11 @@ function populateAnimationControls(){
  // The authored curve can only drive the face when the character owns the
  // matching skeletal pose; without a PoseAsset there is nothing to apply.
  if(animator.poseByName.has('EyeBlink'))face.appendChild(sample);
+ if(facialData&&animator.poses.poses.length>1){
+  const all=document.createElement('option');all.value='authored_all';
+  all.textContent='原曲线全通道 · controllerConfig（'+facialData.stats.availablePoses+' 个 pose 可用）';
+  face.appendChild(all);
+ }
  const labels={Reference:'无附加姿势',EyeBlink:'闭眼 / EyeBlink',EyeBlink_Neg:'睁眼 / EyeBlink_Neg',LipTogether:'合唇 / LipTogether',LipTogether_Neg:'合唇反向 / LipTogether_Neg',BrowUp:'扬眉 / BrowUp',BrowDown:'压眉 / BrowDown'};
  for(const pose of animator.poses.poses){const option=document.createElement('option');option.value=pose.name;option.textContent=labels[pose.name]??pose.name;poses.appendChild(option);}
  body.value=state.animationClip;face.value=state.faceClip;poses.value=state.poseName;

@@ -29,7 +29,7 @@ export function evaluateSourceCurve(curve,time){
 
 class NativeAnimator{
  constructor(model,manifest,rig,skinBuffer,poses,clips,authored){
-  Object.assign(this,{model,manifest,rig,poses,clips,authored});this.body='World_Idle';this.face='none';this.pose='Reference';this.poseWeight=1;this.faceWeight=1;this.loop=true;this.inPlace=true;this.time=0;this.faceTime=0;this.speed=1;this.playing=true;this.dirty=true;this.updated=false;this.blinkCurve=authored.curves.find(c=>c.name==='EyeBlink');
+  Object.assign(this,{model,manifest,rig,poses,clips,authored});this.body='World_Idle';this.face='none';this.pose='Reference';this.poseWeight=1;this.faceWeight=1;this.loop=true;this.inPlace=true;this.time=0;this.faceTime=0;this.speed=1;this.playing=true;this.dirty=true;this.updated=false;this.blinkCurve=authored.curves.find(c=>c.name==='EyeBlink');this.facial=null;this.facialCurves=null;this.lastFacial=null;
   const h=new Uint32Array(skinBuffer,0,4);if(h[0]!==0x534b524e||h[1]!==model.metadata.vertexCount||h[2]!==rig.bones.length)throw Error('蒙皮与模型不匹配');
   this.influences=h[3];const dv=new DataView(skinBuffer);this.ids=new Uint16Array(h[1]*h[3]);this.weights=new Float32Array(h[1]*h[3]);
   for(let i=0;i<h[1];i++)for(let j=0;j<h[3];j++){this.ids[i*h[3]+j]=dv.getUint16(16+i*24+j*2,true);this.weights[i*h[3]+j]=dv.getFloat32(16+i*24+8+j*4,true);}
@@ -45,7 +45,7 @@ class NativeAnimator{
   this.referenceSkinError=this.bindError();this.apply(0);this.skinVertices();
  }
  get duration(){return this.clips.get(this.body)?.duration??0;}
- get faceDuration(){return this.face==='authored_blink'?this.authored.sourceDuration:this.clips.get(this.face)?.duration??0;}
+ get faceDuration(){return this.face==='authored_blink'||this.face==='authored_all'?this.authored.sourceDuration:this.clips.get(this.face)?.duration??0;}
  get atEnd(){const d=this.duration||this.faceDuration;return !this.loop&&d>0&&this.time>=d;}
  get displayTime(){return this.clipTime(this.time,this.duration,this.seekBodyEnd);}
  get displayFaceTime(){return this.clipTime(this.faceTime,this.faceDuration,this.seekFaceEnd);}
@@ -79,6 +79,37 @@ class NativeAnimator{
    t.s.x*=1+b.scaleDelta[0]*w;t.s.y*=1+b.scaleDelta[1]*w;t.s.z*=1+b.scaleDelta[2]*w;
   }
  }
+ // ---- original controllerConfig facial curves --------------------------
+ setFacial(data){
+  if(!data){this.facial=null;this.facialCurves=null;return;}
+  this.facial={entries:data.entries,stats:data.stats};
+  // The authored _Neg curves are exact mirrors of the positive ones and
+  // controllerConfig already expresses that direction with weight -1 on the
+  // companion _Neg pose, so sampling both would double-count.
+  this.facialCurves=new Map(this.authored.curves.filter(c=>!c.name.endsWith('_Neg')).map(c=>[c.name,c]));
+ }
+ applyFacial(time,blend){
+  if(!this.facial||!this.facialCurves)return;
+  const byPose=new Map();let used=0,negativeSkipped=0,jawOpen=0,blinkScale=0,maxWeight=0,missing=0;
+  for(const [name,attrs] of Object.entries(this.facial.entries)){
+   const curve=this.facialCurves.get(name);if(!curve)continue;
+   const v=evaluateSourceCurve({interpolation:curve.interpolation,keys:curve.keys},time);
+   if(v===0)continue;used++;
+   for(const a of attrs){
+    const w=v*a.weight;
+    if(a.jawOpen)jawOpen+=w;
+    if(a.blinkScale)blinkScale+=w;
+    // A negative product means the companion _Neg attribute carries this
+    // direction. addPose only accepts non-negative weights.
+    if(w>0)byPose.set(a.pose,(byPose.get(a.pose)??0)+w);else negativeSkipped++;
+   }
+  }
+  for(const [name,w] of byPose){
+   const pose=this.poseByName.get(name);if(!pose){missing++;continue;}
+   const applied=w*blend;maxWeight=Math.max(maxWeight,applied);this.addPose(pose,applied);
+  }
+  this.lastFacial={time,used,poses:byPose.size,applied:byPose.size-missing,missing,maxWeight,negativeSkipped,jawOpen,blinkScale,blend};
+ }
  apply(dt){
   if(this.playing&&dt>0){
    this.time+=dt*this.speed;this.faceTime+=dt*this.speed;this.seekBodyEnd=this.seekFaceEnd=false;this.dirty=true;
@@ -95,11 +126,12 @@ class NativeAnimator{
    const mask=this.face.startsWith('Pos_Look')?[...this.faceMask,9,10]:this.faceMask,time=this.displayFaceTime;
    for(const i of mask){const t=this.local[i];this.sample(face,time,i,this.tmpP,this.tmpQ,this.tmpS);t.p.lerp(this.tmpP,this.faceWeight);t.q.slerp(this.tmpQ,this.faceWeight).normalize();t.s.lerp(this.tmpS,this.faceWeight);}
   }
-  this.lastAuthoredBlink=null;
+  this.lastAuthoredBlink=null;this.lastFacial=null;
   if(this.face==='authored_blink'){
    const raw=evaluateSourceCurve(this.blinkCurve,this.displayFaceTime),weight=Math.max(0,raw)*this.faceWeight;
    this.addPose(this.poseByName.get('EyeBlink'),weight);this.lastAuthoredBlink={time:this.displayFaceTime,rawValue:raw,appliedPositiveWeight:weight};
   }
+  if(this.face==='authored_all')this.applyFacial(this.displayFaceTime,this.faceWeight);
   this.addPose(this.poseByName.get(this.pose),this.poseWeight);
   this.applyMorph();
   this.computeWorld();for(let i=0;i<this.skin.length;i++)this.skin[i].multiplyMatrices(this.world[i],this.inverseBind[i]);
@@ -174,5 +206,5 @@ class NativeAnimator{
  bindError(){
   let err=0;for(let i=0;i<this.skin.length;i++){const m=new THREE.Matrix4().multiplyMatrices(this.world[i],this.inverseBind[i]).elements;for(let j=0;j<16;j++)err=Math.max(err,Math.abs(m[j]-(j%5===0?1:0)));}return err;
  }
- summary(){return {body:this.body,face:this.face,pose:this.pose,time:this.time,faceTime:this.faceTime,playing:this.playing,speed:this.speed,inPlace:this.inPlace,duration:this.duration,faceDuration:this.faceDuration,authoredBlink:this.lastAuthoredBlink,clipCount:this.clips.size,poseCount:this.poses.poses.length,bindError:this.referenceSkinError,morphTargets:this.morph?.targets.length??0,morph:this.lastMorph};}
+ summary(){return {body:this.body,face:this.face,pose:this.pose,time:this.time,faceTime:this.faceTime,playing:this.playing,speed:this.speed,inPlace:this.inPlace,duration:this.duration,faceDuration:this.faceDuration,authoredBlink:this.lastAuthoredBlink,facial:this.lastFacial,facialStats:this.facial?.stats??null,clipCount:this.clips.size,poseCount:this.poses.poses.length,bindError:this.referenceSkinError,morphTargets:this.morph?.targets.length??0,morph:this.lastMorph};}
 }

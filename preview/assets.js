@@ -42,6 +42,12 @@ export async function loadGaze(root='assets/'){
   return await loadAsset(root+'gaze/curves.json',true);
  }catch(error){return null;}
 }
+export async function loadFacial(root='assets/'){
+ // The controllerConfig mapping is optional; a missing folder is not an error.
+ try{
+  return await loadAsset(root+'facial/controller.json',true);
+ }catch(error){return null;}
+}
 export async function loadModel(root='assets/'){
   const [buffer,metadata]=await Promise.all([loadAsset(root+'character.bin'),loadAsset(root+'character.json',true)]);
   const head=new Uint32Array(buffer,0,4),[magic,nv,ni,nu]=head;if(magic!==0x4343524e)throw Error('模型数据头不正确');let offset=16;

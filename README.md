@@ -28,7 +28,7 @@
 │   ├── NrcChar/                C# 资源提取器（网格 / 材质 / 贴图 / 动作 / 对话曲线）
 │   ├── CharScan/               角色资源扫描器
 │   ├── LibScanner/             库与资源枚举器
-│   └── charextract/            Python 装配管线（材质解析 / 动作准备 / 注视曲线导出 / 着色器转译 / 打包）
+│   └── charextract/            Python 装配管线（材质解析 / 动作准备 / 注视与面部映射导出 / 着色器转译 / 打包）
 ├── preview/                    浏览器预览前端源码
 │   ├── app.js materials.js     渲染与材质
 │   ├── animation.js assets.js  原版动作与资源加载
@@ -70,6 +70,7 @@ dotnet run --project tools/NrcChar -c Release -- --paks <游戏>\Win64\NRC\Conte
 python tools/charextract/prepare_multi.py --data <work> --materials <materials> --shaders <shaders> --manifest manifest/characters.manifest.json --out <out>
 python tools/charextract/prepare_morph.py --data <work> --chars <work>/chars --out <out>/preview/assets
 python tools/charextract/prepare_eye_gaze.py --data <work> --chars <work>/chars --out <out>/preview/assets
+python tools/charextract/prepare_facial_controller.py --manifest manifest --out <out>/preview/assets
 node preview/build.mjs
 python tools/charextract/pack_multi.py --data <out> --code preview
 ```
@@ -88,6 +89,7 @@ python tools/charextract/pack_multi.py --data <out> --code preview
 - 浏览器回归：三个角色均 0 console error / 0 warning，142–144 FPS（WebGL 2）。
 - **原版眼睛注视**：`ec_u/v_offset_*` 已从原生 clip 导出，按动作时间轴采样后经 `uGazeOffset` 叠加到左右眼 UV。离线 `file://` 打开后复核 7 个 GL program 全部链接成功（含 `NRC eyes`）、`glError=0`；同帧开关 A/B 确认该 uniform 生效。**深度调查后精确化的限制**：眼睛 PS 的符号/缩放规则其实已从 DXBC 逐指令确定（水平 ×2、取负、按眼镜像），当前实现是在 UV 层另开通道、绕过了它们；真正未定案的是 `ec_*` 曲线值在参数链中的层级，详见 `docs/05`。
 - 表情 A/B（同一帧对照，伊里斯 `World_Dialogue_1`，时间轴 0.567 ≈ t = 2.27 s）：**变形目标开 → 嘴张开、眉毛变化；变形目标关 → 嘴闭合成一条细线、眉毛回到中性。**「对话动作」自带 14 条命中变形目标的曲线，所以选它嘴就会动。
+- 原版面部曲线多通道混合（P1）：参考角色 `NPC_00401` 的表情片段选「原曲线全通道 · controllerConfig」，按原版 `controllerConfig` 把正曲线采样值经符号门控映射到同名 pose 并叠加；108/108 pose 可用，同帧 A/B 脸部区域 2,281 px 变化。路易斯只有 20 个 pose 有非空增量、伊里斯无 PoseAsset，故该选项不会出现在她们的下拉里——限制见 `docs/05`。
 
 详细数据见 [docs/02](docs/02-材质与着色器还原.md) 与 [docs/03](docs/03-动画还原.md)。
 
