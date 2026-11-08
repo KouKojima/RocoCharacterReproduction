@@ -2,6 +2,8 @@ using CUE4Parse.FileProvider;
 using CUE4Parse.Encryption.Aes;
 using CUE4Parse.UE4.Versions;
 using CUE4Parse.UE4.Objects.Core.Misc;
+using CUE4Parse.UE4.Assets.Exports;
+using CUE4Parse.UE4.Assets.Objects.Properties;
 using CUE4Parse.UE4.Pak.Objects;
 using System.Security.Cryptography;
 using System.Text.Json;
@@ -59,8 +61,70 @@ var rows = provider.Files
     })
     .ToArray();
 
-File.WriteAllText(Path.Combine(output, "library-index.json"), JsonSerializer.Serialize(new { indexedFiles = provider.Files.Count, largeBlockFixes = fixes, rows }, new JsonSerializerOptions { WriteIndented = true }));
-Console.WriteLine(JsonSerializer.Serialize(new { indexedFiles = provider.Files.Count, largeBlockFixes = fixes, shaderArchives = rows.Length }));
+File.WriteAllText(
+    Path.Combine(output, Arg("--index-name") ?? "library-index.json"),
+    JsonSerializer.Serialize(
+        new { indexedFiles = provider.Files.Count, largeBlockFixes = fixes, rows },
+        new JsonSerializerOptions { WriteIndented = !args.Contains("--compact") }));
+Console.WriteLine(JsonSerializer.Serialize(new { indexedFiles = provider.Files.Count, largeBlockFixes = fixes, rows = rows.Length }));
+
+if (args.Contains("--dump"))
+{
+    // Dump every matching package as JSON so game-specific DataAssets such as
+    // DataConfig/FacialConfig/*.uasset can be read without a second mount.
+    // ReferenceHandler.IgnoreCycles keeps CUE4Parse's object graph from looping.
+    var dumpOptions = new JsonSerializerOptions
+    {
+        WriteIndented = true,
+        MaxDepth = 12,
+        ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles
+    };
+    foreach (var pair in provider.Files.Where(x =>
+                 x.Key.Contains(filter, StringComparison.OrdinalIgnoreCase) &&
+                 x.Key.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase)))
+    {
+        try
+        {
+            var exports = provider.LoadPackage(pair.Key).GetExports().ToArray();
+            // Newtonsoft is used here on purpose: CUE4Parse ships converters for
+            // Map/Struct/Array property types, and it serializes public *fields*
+            // (FPropertyTag keeps its data in fields), which System.Text.Json drops.
+            var payload = new
+            {
+                path = pair.Key,
+                exports = exports.Select(e => new
+                {
+                    name = e.Name,
+                    type = e.GetType().Name,
+                    properties = (e as IPropertyHolder)?.Properties is { } props
+                        ? props.Select(p => new
+                        {
+                            name = p.Name.Text,
+                            propertyType = p.PropertyType.Text,
+                            arrayIndex = p.ArrayIndex,
+                            arraySize = p.ArraySize,
+                            size = p.Size,
+                            tag = p.Tag?.ToString(),
+                            value = p.Tag is null ? null : Newtonsoft.Json.JsonConvert.SerializeObject(p.Tag, new Newtonsoft.Json.JsonSerializerSettings
+                            {
+                                ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore,
+                                MaxDepth = 24
+                            })
+                        }).ToArray()
+                        : null
+                }).ToArray()
+            };
+            File.WriteAllText(
+                Path.Combine(output, Path.GetFileNameWithoutExtension(pair.Key) + "-dump.json"),
+                JsonSerializer.Serialize(payload, dumpOptions));
+            Console.WriteLine($"DUMPED {pair.Key} exports={exports.Length}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"DUMP-FAIL {pair.Key} {ex.GetType().Name}: {ex.Message}");
+        }
+    }
+}
 
 if (Arg("--extract-pak") is string extractPak)
 {

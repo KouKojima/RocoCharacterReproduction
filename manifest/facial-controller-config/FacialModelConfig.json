@@ -1,0 +1,5509 @@
+{
+ "source": "NRC/Content/NewRoco/DataConfig/FacialConfig/FacialModelConfig.uasset",
+ "paramsConfig": {
+  "AUChangeSpeedScale": 20.0,
+  "LazyIteration": 4,
+  "SpeedLimitIteration": 3,
+  "TrembleIteration": 3,
+  "AUJawOpen": "Bone_zuiba_001_z_rotation",
+  "JawOpenValue": 1.0,
+  "AUJawOpen2": "Bone_zuiba_001_x_position",
+  "JawOpenValue2": -1.0,
+  "BreathTime": 0.4,
+  "AUFadeOutTimeScale": 0.5
+ },
+ "speedConfig": {
+  "10_Upper_Lip_Raiser": {
+   "changeSpeed": 0.5,
+   "fadeOutTime": 0.7
+  },
+  "12_Lip_Corner_Puller": {
+   "changeSpeed": 0.1,
+   "fadeOutTime": 0.7
+  },
+  "14_Dimpler": {
+   "changeSpeed": 0.3,
+   "fadeOutTime": 0.6
+  },
+  "16_Lower_Lip_Depressor": {
+   "changeSpeed": 0.5,
+   "fadeOutTime": 0.7
+  },
+  "18_Lip_Puckerer": {
+   "changeSpeed": 0.3,
+   "fadeOutTime": 0.1
+  },
+  "22_Lip_Funneler": {
+   "changeSpeed": 0.2,
+   "fadeOutTime": 0.1
+  },
+  "23_Lip_Tightener": {
+   "changeSpeed": 0.1,
+   "fadeOutTime": 0.3
+  },
+  "24_Lip_Pressor": {
+   "changeSpeed": 0.2,
+   "fadeOutTime": 0.1
+  },
+  "26_Jaw_Drop": {
+   "changeSpeed": 0.2,
+   "fadeOutTime": 0.7
+  },
+  "28_Lip_Suck": {
+   "changeSpeed": 0.2,
+   "fadeOutTime": 0.1
+  },
+  "Mouth_Push_Pull": {
+   "changeSpeed": 0.4,
+   "fadeOutTime": 0.3
+  },
+  "Tongue": {
+   "changeSpeed": 0.3,
+   "fadeOutTime": 0.5
+  },
+  "Lip_Together": {
+   "changeSpeed": 0.1,
+   "fadeOutTime": 0.3
+  },
+  "": {
+   "changeSpeed": 0.1,
+   "fadeOutTime": 0.3
+  }
+ },
+ "visemeToleranceConfig": {
+  "10_Upper_Lip_Raiser": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": -1.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.1
+    },
+    {
+     "Key": "L",
+     "Value": 0.1
+    },
+    {
+     "Key": "GKH",
+     "Value": 0.1
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.0
+    },
+    {
+     "Key": "Er",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.0
+    }
+   ]
+  },
+  "12_Lip_Corner_Puller": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.1
+    },
+    {
+     "Key": "L",
+     "Value": 0.1
+    },
+    {
+     "Key": "GKH",
+     "Value": 0.1
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.1
+    },
+    {
+     "Key": "En_R",
+     "Value": 0.1
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.1
+    },
+    {
+     "Key": "A",
+     "Value": 0.3
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.2
+    },
+    {
+     "Key": "I",
+     "Value": 0.2
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.0
+    },
+    {
+     "Key": "Er",
+     "Value": 0.2
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.1
+    }
+   ]
+  },
+  "14_Dimpler": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 0.9
+    },
+    {
+     "Key": "F",
+     "Value": 1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 1.0
+    },
+    {
+     "Key": "L",
+     "Value": 1.0
+    },
+    {
+     "Key": "GKH",
+     "Value": 1.0
+    },
+    {
+     "Key": "JQX",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 1.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.3
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.1
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.0
+    },
+    {
+     "Key": "Er",
+     "Value": 0.1
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.4
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.2
+    }
+   ]
+  },
+  "15_Lip_Corner_Depressor": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 0.3
+    },
+    {
+     "Key": "F",
+     "Value": 0.3
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.2
+    },
+    {
+     "Key": "L",
+     "Value": 0.2
+    },
+    {
+     "Key": "GKH",
+     "Value": 0.1
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.1
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_R",
+     "Value": 0.1
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.1
+    },
+    {
+     "Key": "A",
+     "Value": 0.2
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.1
+    },
+    {
+     "Key": "I",
+     "Value": 0.1
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.0
+    },
+    {
+     "Key": "Er",
+     "Value": 0.1
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.1
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.1
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.1
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.2
+    }
+   ]
+  },
+  "16_Lower_Lip_Depressor": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": -1.0
+    },
+    {
+     "Key": "F",
+     "Value": -1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.1
+    },
+    {
+     "Key": "L",
+     "Value": 0.1
+    },
+    {
+     "Key": "GKH",
+     "Value": 0.1
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.0
+    },
+    {
+     "Key": "Er",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.0
+    }
+   ]
+  },
+  "18_Lip_Puckerer": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 1.0
+    },
+    {
+     "Key": "F",
+     "Value": 1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 1.0
+    },
+    {
+     "Key": "L",
+     "Value": 1.0
+    },
+    {
+     "Key": "GKH",
+     "Value": 1.0
+    },
+    {
+     "Key": "JQX",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 1.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.0
+    },
+    {
+     "Key": "Er",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 1.0
+    }
+   ]
+  },
+  "22_Lip_Funneler": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": -1.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.4
+    },
+    {
+     "Key": "L",
+     "Value": 0.4
+    },
+    {
+     "Key": "GKH",
+     "Value": 0.4
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.3
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_R",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.2
+    },
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    },
+    {
+     "Key": "Yu",
+     "Value": -1.0
+    },
+    {
+     "Key": "Er",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.5
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.5
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.3
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.3
+    }
+   ]
+  },
+  "23_Lip_Tightener": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 0.1
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.5
+    },
+    {
+     "Key": "L",
+     "Value": 0.5
+    },
+    {
+     "Key": "GKH",
+     "Value": 0.5
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.3
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.5
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 1.0
+    },
+    {
+     "Key": "U",
+     "Value": 1.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.0
+    },
+    {
+     "Key": "Er",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.0
+    }
+   ]
+  },
+  "24_Lip_Pressor": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 0.6
+    },
+    {
+     "Key": "F",
+     "Value": 0.4
+    },
+    {
+     "Key": "DTN",
+     "Value": 1.0
+    },
+    {
+     "Key": "L",
+     "Value": 1.0
+    },
+    {
+     "Key": "GKH",
+     "Value": 1.0
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.4
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.3
+    },
+    {
+     "Key": "En_R",
+     "Value": 0.3
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.3
+    },
+    {
+     "Key": "O",
+     "Value": 0.1
+    },
+    {
+     "Key": "E",
+     "Value": 0.5
+    },
+    {
+     "Key": "I",
+     "Value": 0.2
+    },
+    {
+     "Key": "U",
+     "Value": 0.2
+    },
+    {
+     "Key": "Yu",
+     "Value": -1.0
+    },
+    {
+     "Key": "Er",
+     "Value": 0.5
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.0
+    }
+   ]
+  },
+  "26_Jaw_Drop": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 0.05
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "L",
+     "Value": -1.0
+    },
+    {
+     "Key": "GKH",
+     "Value": 0.1
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_R",
+     "Value": -1.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.3
+    },
+    {
+     "Key": "O",
+     "Value": 0.2
+    },
+    {
+     "Key": "E",
+     "Value": 0.1
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.1
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.1
+    },
+    {
+     "Key": "Er",
+     "Value": 0.1
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.3
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.3
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.0
+    }
+   ]
+  },
+  "27_Mouth_Stretch": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": -1.0
+    },
+    {
+     "Key": "F",
+     "Value": -1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "L",
+     "Value": 0.0
+    },
+    {
+     "Key": "GKH",
+     "Value": 0.0
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.2
+    },
+    {
+     "Key": "O",
+     "Value": 0.3
+    },
+    {
+     "Key": "E",
+     "Value": 0.2
+    },
+    {
+     "Key": "I",
+     "Value": 0.2
+    },
+    {
+     "Key": "U",
+     "Value": 0.2
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.2
+    },
+    {
+     "Key": "Er",
+     "Value": 0.2
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.0
+    }
+   ]
+  },
+  "28_Lip_Suck": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": -1.0
+    },
+    {
+     "Key": "F",
+     "Value": -1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "L",
+     "Value": 0.0
+    },
+    {
+     "Key": "GKH",
+     "Value": 0.0
+    },
+    {
+     "Key": "JQX",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 0.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 0.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.2
+    },
+    {
+     "Key": "O",
+     "Value": 0.3
+    },
+    {
+     "Key": "E",
+     "Value": 0.2
+    },
+    {
+     "Key": "I",
+     "Value": 0.2
+    },
+    {
+     "Key": "U",
+     "Value": 0.2
+    },
+    {
+     "Key": "Yu",
+     "Value": 0.2
+    },
+    {
+     "Key": "Er",
+     "Value": 0.2
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 0.2
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 0.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Mouth_Push_Pull": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 1.0
+    },
+    {
+     "Key": "F",
+     "Value": 1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 1.0
+    },
+    {
+     "Key": "L",
+     "Value": 1.0
+    },
+    {
+     "Key": "GKH",
+     "Value": 1.0
+    },
+    {
+     "Key": "JQX",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 1.0
+    },
+    {
+     "Key": "A",
+     "Value": 1.0
+    },
+    {
+     "Key": "O",
+     "Value": 1.0
+    },
+    {
+     "Key": "E",
+     "Value": 1.0
+    },
+    {
+     "Key": "I",
+     "Value": 1.0
+    },
+    {
+     "Key": "U",
+     "Value": 1.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 1.0
+    },
+    {
+     "Key": "Er",
+     "Value": 1.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 1.0
+    }
+   ]
+  },
+  "Tongue": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 1.0
+    },
+    {
+     "Key": "F",
+     "Value": 1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 1.0
+    },
+    {
+     "Key": "L",
+     "Value": 1.0
+    },
+    {
+     "Key": "GKH",
+     "Value": 1.0
+    },
+    {
+     "Key": "JQX",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 1.0
+    },
+    {
+     "Key": "A",
+     "Value": 1.0
+    },
+    {
+     "Key": "O",
+     "Value": 1.0
+    },
+    {
+     "Key": "E",
+     "Value": 1.0
+    },
+    {
+     "Key": "I",
+     "Value": 1.0
+    },
+    {
+     "Key": "U",
+     "Value": 1.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 1.0
+    },
+    {
+     "Key": "Er",
+     "Value": 1.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 1.0
+    }
+   ]
+  },
+  "": {
+   "toleranceValues": [
+    {
+     "Key": "BPM",
+     "Value": 1.0
+    },
+    {
+     "Key": "F",
+     "Value": 1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 1.0
+    },
+    {
+     "Key": "L",
+     "Value": 1.0
+    },
+    {
+     "Key": "GKH",
+     "Value": 1.0
+    },
+    {
+     "Key": "JQX",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZhChShR",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_R",
+     "Value": 1.0
+    },
+    {
+     "Key": "ZCS",
+     "Value": 1.0
+    },
+    {
+     "Key": "A",
+     "Value": 1.0
+    },
+    {
+     "Key": "O",
+     "Value": 1.0
+    },
+    {
+     "Key": "E",
+     "Value": 1.0
+    },
+    {
+     "Key": "I",
+     "Value": 1.0
+    },
+    {
+     "Key": "U",
+     "Value": 1.0
+    },
+    {
+     "Key": "Yu",
+     "Value": 1.0
+    },
+    {
+     "Key": "Er",
+     "Value": 1.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Ah",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Aa",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Sh",
+     "Value": 1.0
+    },
+    {
+     "Key": "En_Th",
+     "Value": 1.0
+    }
+   ]
+  }
+ },
+ "emotionToleranceConfig": {
+  "01_Inner_Brow_Raiser": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "02_Outer_Brow_Raiser": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "04_Brow_Lowerer": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "06_Cheek_Raiser": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "09_Nose_Wrinkler": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 1.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 1.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 1.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "10_Upper_Lip_Raiser": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 1.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 1.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 1.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "11_Nasolabial_Deepener": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 1.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 1.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 1.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "12_Lip_Corner_Puller": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 1.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 1.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 1.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "14_Dimpler": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.5
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.5
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 0.2
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "15_Lip_Corner_Depressor": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "16_Lower_Lip_Depressor": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "18_Lip_Puckerer": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "22_Lip_Funneler": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "23_Lip_Tightener": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "24_Lip_Pressor": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "26_Jaw_Drop": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "27_Mouth_Stretch": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "28_Lip_Suck": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "44_Squint": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 0.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "45_Blink": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 0.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 0.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 0.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 1.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "Mouth_Push_Pull": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 1.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 1.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 1.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "Tongue": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 1.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 1.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 1.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  },
+  "": {
+   "toleranceValues": [
+    {
+     "Key": "Joy",
+     "Value": 1.0
+    },
+    {
+     "Key": "Sadness",
+     "Value": 1.0
+    },
+    {
+     "Key": "Fear",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anger",
+     "Value": 1.0
+    },
+    {
+     "Key": "Surprise",
+     "Value": 1.0
+    },
+    {
+     "Key": "Disgust",
+     "Value": 1.0
+    },
+    {
+     "Key": "Anticipation",
+     "Value": 1.0
+    },
+    {
+     "Key": "Trust",
+     "Value": 1.0
+    }
+   ]
+  }
+ },
+ "phonemeToVisemeMapping": {
+  "[i]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[a]": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "[aː]": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "[ã]": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "[ă]": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "[b]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[bʲ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[bʲj]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[bʷ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[bʼ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[bː]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[b̞]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[b̤]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[b̥]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[c]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[d]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[dʒ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[dʲ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[d͡z]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[d͡ʑ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[d͡ʒ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[d͡ʒː]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[d͡ʒ̤]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[dː]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[d̚]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[d̥]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[d̪]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[d̯]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[ʥ]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[e]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[eːe̞]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[f]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[fʲ]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[fʷ]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[fː]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[g]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[gʲ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[gʲj]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[gʷ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[gː]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[h]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[hʷ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ij]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[iː]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[i̞]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[i̥]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[i̯]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[j]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[k]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[kx]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[kʰ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[kʲ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[kʲj]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[kʷ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[kʷʼ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[kʼ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[kː]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[k̟ʲ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[k̟̚]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[k͡p̚]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[l]": {
+   "visemes": [
+    "L"
+   ]
+  },
+  "[lʲ]": {
+   "visemes": [
+    "L"
+   ]
+  },
+  "[lː]": {
+   "visemes": [
+    "L"
+   ]
+  },
+  "[l̪]": {
+   "visemes": [
+    "L"
+   ]
+  },
+  "[m]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[mʲ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[mʲj]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[mʷ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[mː]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[n]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[nj]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[nʲ]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[nː]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[n̪]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[n̺]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[o]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[oː]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[o̞]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[o̥]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[p]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[pf]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[pʰ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[pʲ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[pʲj]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[pʷ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[pʷʼ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[pʼ]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[pː]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[p̚]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[q]": {
+   "visemes": [
+    "Q"
+   ]
+  },
+  "[r]": {
+   "visemes": [
+    "En_R"
+   ]
+  },
+  "[rː]": {
+   "visemes": [
+    "En_R"
+   ]
+  },
+  "[s]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[sʲ]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[sʼ]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[sː]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[s̪]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[t]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[ts]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[ʦ]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[tsʰ]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[tɕ]": {
+   "visemes": [
+    "JQX"
+   ]
+  },
+  "[ʨ]": {
+   "visemes": [
+    "JQX"
+   ]
+  },
+  "[tɕʰ]": {
+   "visemes": [
+    "JQX"
+   ]
+  },
+  "[tʰ]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[tʲ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[tʷʼ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[tʼ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[tː]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t̚]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t̪]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t̪ʰ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t̪̚]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t͡s]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t͡sʼ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t͡ɕ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t͡ɬ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t͡ʃ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t͡ʃʲ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t͡ʃʼ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[t͡ʃː]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[tʂ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[tʂʰ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[tʃ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʈʂ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʈʂʰ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[u]": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "[uə]": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "[uː]": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "[u͡w]": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "[v]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[vʲ]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[vʷ]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[vː]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[v̞]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[v̞ʲ]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[w]": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "[x]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[x̟ʲ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[y]": {
+   "visemes": [
+    "Yu"
+   ]
+  },
+  "[z]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[zj]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[zʲ]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[z̪]": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "[ä]": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "[æ]": {
+   "visemes": [
+    "En_Aa"
+   ]
+  },
+  "[ç]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[çj]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ð]": {
+   "visemes": [
+    "En_Th"
+   ]
+  },
+  "[ø]": {
+   "visemes": [
+    "En_Th"
+   ]
+  },
+  "[ŋ]": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "[ŋ̟]": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "[ŋ͡m]": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "[œ]": {
+   "visemes": [
+    "En_Aa"
+   ]
+  },
+  "[œ̃]": {
+   "visemes": [
+    "En_Aa"
+   ]
+  },
+  "[ɐ]": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "[ɐ̞]": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "[ɑ]": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "[ɑ̱]": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "[ɒ]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ɓ]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ɔ]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ɔ̃]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ɖ̤]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ɗ]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ə]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[ɛ]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[ɛ̃]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[ɟ]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[ɕ]": {
+   "visemes": [
+    "JQX"
+   ]
+  },
+  "[ɕː]": {
+   "visemes": [
+    "JQX"
+   ]
+  },
+  "[ɡ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɡʲ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɡ̤]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɡ̥]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɣ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɣj]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɤ]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[ɤɐ̞]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[ɤ̆]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[ɥ]": {
+   "visemes": [
+    "Yu"
+   ]
+  },
+  "[ɦ]": {
+   "visemes": [
+    "Yu"
+   ]
+  },
+  "[ɨ]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[ɪ]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[ɫ]": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "[ɯ]": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "[ɯ̟]": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "[ɯ̥]": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "[ɹ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ɹ̩]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ɻ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ɻ̩]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ɽ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ɾ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ɾj]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ɾʲ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ɾ̠]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʀ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʁ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʁ̝]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʂ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ɰ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɱ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɲ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɳ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɴ]": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "[ɵ]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[ɸ]": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "[ʃ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[ʃʲː]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[ʃ͡ɣ]": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "[ʈ]": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "[ʉ̞]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ʊ]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ʋ]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ʋʲ]": {
+   "visemes": [
+    "O"
+   ]
+  },
+  "[ʌ]": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "[ʎ]": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "[ʏ]": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "[ʐ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʑ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʒ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʒ͡ɣ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʔ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ʝ]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[ː]": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "[β]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[β̞]": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "[θ]": {
+   "visemes": [
+    "En_Th"
+   ]
+  },
+  "[χ]": {
+   "visemes": [
+    "H"
+   ]
+  },
+  "[ә]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "[ḁ]": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "B": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "P": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "M": {
+   "visemes": [
+    "BPM"
+   ]
+  },
+  "F": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "D": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "T": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "N": {
+   "visemes": [
+    "DTN"
+   ]
+  },
+  "L": {
+   "visemes": [
+    "L"
+   ]
+  },
+  "G": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "K": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "H": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "j": {
+   "visemes": [
+    "JQX"
+   ]
+  },
+  "q": {
+   "visemes": [
+    "JQX"
+   ]
+  },
+  "x": {
+   "visemes": [
+    "JQX"
+   ]
+  },
+  "ZH": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "CH": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "SH": {
+   "visemes": [
+    "En_Sh"
+   ]
+  },
+  "R": {
+   "visemes": [
+    "En_R"
+   ]
+  },
+  "Z": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "c": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "S": {
+   "visemes": [
+    "ZCS"
+   ]
+  },
+  "a": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "a1": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "a2": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "a3": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "a4": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "a5": {
+   "visemes": [
+    "A"
+   ]
+  },
+  "o": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "o1": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "o2": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "o3": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "o4": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "o5": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "e": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "e1": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "e2": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "e3": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "e4": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "e5": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "i": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "i1": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "i2": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "i3": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "i4": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "i5": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "ix": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "ix1": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "ix2": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "ix3": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "ix4": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "ix5": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "IY": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iy1": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iy2": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iy3": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iy4": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iy5": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iz": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iz1": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iz2": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iz3": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iz4": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "iz5": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "ii": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "ii1": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "ii2": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "ii3": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "ii4": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "ii5": {
+   "visemes": [
+    "ZhChShR"
+   ]
+  },
+  "u": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "u1": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "u2": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "u3": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "u4": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "u5": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "V": {
+   "visemes": [
+    "F"
+   ]
+  },
+  "v1": {
+   "visemes": [
+    "Yu"
+   ]
+  },
+  "v2": {
+   "visemes": [
+    "Yu"
+   ]
+  },
+  "v3": {
+   "visemes": [
+    "Yu"
+   ]
+  },
+  "v4": {
+   "visemes": [
+    "Yu"
+   ]
+  },
+  "v5": {
+   "visemes": [
+    "Yu"
+   ]
+  },
+  "ER": {
+   "visemes": [
+    "Er"
+   ]
+  },
+  "er1": {
+   "visemes": [
+    "Er"
+   ]
+  },
+  "er2": {
+   "visemes": [
+    "Er"
+   ]
+  },
+  "er3": {
+   "visemes": [
+    "Er"
+   ]
+  },
+  "er4": {
+   "visemes": [
+    "Er"
+   ]
+  },
+  "er5": {
+   "visemes": [
+    "Er"
+   ]
+  },
+  "nn": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "nn1": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "nn2": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "nn3": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "nn4": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "nn5": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "NG": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "ng1": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "ng2": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "ng3": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "ng4": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "ng5": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "an": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "an1": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "an2": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "an3": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "an4": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "an5": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "en": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "en1": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "en2": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "en3": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "en4": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "en5": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "in": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "in1": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "in2": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "in3": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "in4": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "in5": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "un": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "un1": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "un2": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "un3": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "un4": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "un5": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "vn": {
+   "visemes": [
+    "Yu",
+    "NgN"
+   ]
+  },
+  "vn1": {
+   "visemes": [
+    "Yu",
+    "NgN"
+   ]
+  },
+  "vn2": {
+   "visemes": [
+    "Yu",
+    "NgN"
+   ]
+  },
+  "vn3": {
+   "visemes": [
+    "Yu",
+    "NgN"
+   ]
+  },
+  "vn4": {
+   "visemes": [
+    "Yu",
+    "NgN"
+   ]
+  },
+  "vn5": {
+   "visemes": [
+    "Yu",
+    "NgN"
+   ]
+  },
+  "ang": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "ang1": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "ang2": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "ang3": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "ang4": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "ang5": {
+   "visemes": [
+    "A",
+    "NgN"
+   ]
+  },
+  "eng": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "eng1": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "eng2": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "eng3": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "eng4": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "eng5": {
+   "visemes": [
+    "E",
+    "NgN"
+   ]
+  },
+  "ing": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "ing1": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "ing2": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "ing3": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "ing4": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "ing5": {
+   "visemes": [
+    "I",
+    "NgN"
+   ]
+  },
+  "ong": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "ong1": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "ong2": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "ong3": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "ong4": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "ong5": {
+   "visemes": [
+    "U",
+    "NgN"
+   ]
+  },
+  "ai": {
+   "visemes": [
+    "A",
+    "I"
+   ]
+  },
+  "ai1": {
+   "visemes": [
+    "A",
+    "I"
+   ]
+  },
+  "ai2": {
+   "visemes": [
+    "A",
+    "I"
+   ]
+  },
+  "ai3": {
+   "visemes": [
+    "A",
+    "I"
+   ]
+  },
+  "ai4": {
+   "visemes": [
+    "A",
+    "I"
+   ]
+  },
+  "ai5": {
+   "visemes": [
+    "A",
+    "I"
+   ]
+  },
+  "AO": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "ao1": {
+   "visemes": [
+    "A",
+    "O"
+   ]
+  },
+  "ao2": {
+   "visemes": [
+    "A",
+    "O"
+   ]
+  },
+  "ao3": {
+   "visemes": [
+    "A",
+    "O"
+   ]
+  },
+  "ao4": {
+   "visemes": [
+    "A",
+    "O"
+   ]
+  },
+  "ao5": {
+   "visemes": [
+    "A",
+    "O"
+   ]
+  },
+  "ou": {
+   "visemes": [
+    "O",
+    "U"
+   ]
+  },
+  "ou1": {
+   "visemes": [
+    "O",
+    "U"
+   ]
+  },
+  "ou2": {
+   "visemes": [
+    "O",
+    "U"
+   ]
+  },
+  "ou3": {
+   "visemes": [
+    "O",
+    "U"
+   ]
+  },
+  "ou4": {
+   "visemes": [
+    "O",
+    "U"
+   ]
+  },
+  "ou5": {
+   "visemes": [
+    "O",
+    "U"
+   ]
+  },
+  "ei": {
+   "visemes": [
+    "E",
+    "I"
+   ]
+  },
+  "ei1": {
+   "visemes": [
+    "E",
+    "I"
+   ]
+  },
+  "ei2": {
+   "visemes": [
+    "E",
+    "I"
+   ]
+  },
+  "ei3": {
+   "visemes": [
+    "E",
+    "I"
+   ]
+  },
+  "ei4": {
+   "visemes": [
+    "E",
+    "I"
+   ]
+  },
+  "ei5": {
+   "visemes": [
+    "E",
+    "I"
+   ]
+  },
+  "ia": {
+   "visemes": [
+    "I",
+    "A"
+   ]
+  },
+  "ia1": {
+   "visemes": [
+    "I",
+    "A"
+   ]
+  },
+  "ia2": {
+   "visemes": [
+    "I",
+    "A"
+   ]
+  },
+  "ia3": {
+   "visemes": [
+    "I",
+    "A"
+   ]
+  },
+  "ia4": {
+   "visemes": [
+    "I",
+    "A"
+   ]
+  },
+  "ia5": {
+   "visemes": [
+    "I",
+    "A"
+   ]
+  },
+  "ie": {
+   "visemes": [
+    "I",
+    "E"
+   ]
+  },
+  "ie1": {
+   "visemes": [
+    "I",
+    "E"
+   ]
+  },
+  "ie2": {
+   "visemes": [
+    "I",
+    "E"
+   ]
+  },
+  "ie3": {
+   "visemes": [
+    "I",
+    "E"
+   ]
+  },
+  "ie4": {
+   "visemes": [
+    "I",
+    "E"
+   ]
+  },
+  "ie5": {
+   "visemes": [
+    "I",
+    "E"
+   ]
+  },
+  "iu": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iu1": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iu2": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iu3": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iu4": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iu5": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iou": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iou1": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iou2": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iou3": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iou4": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "iou5": {
+   "visemes": [
+    "I",
+    "O",
+    "U"
+   ]
+  },
+  "io": {
+   "visemes": [
+    "I",
+    "O"
+   ]
+  },
+  "io1": {
+   "visemes": [
+    "I",
+    "O"
+   ]
+  },
+  "io2": {
+   "visemes": [
+    "I",
+    "O"
+   ]
+  },
+  "io3": {
+   "visemes": [
+    "I",
+    "O"
+   ]
+  },
+  "io4": {
+   "visemes": [
+    "I",
+    "O"
+   ]
+  },
+  "io5": {
+   "visemes": [
+    "I",
+    "O"
+   ]
+  },
+  "ua": {
+   "visemes": [
+    "U",
+    "A"
+   ]
+  },
+  "ua1": {
+   "visemes": [
+    "U",
+    "A"
+   ]
+  },
+  "ua2": {
+   "visemes": [
+    "U",
+    "A"
+   ]
+  },
+  "ua3": {
+   "visemes": [
+    "U",
+    "A"
+   ]
+  },
+  "ua4": {
+   "visemes": [
+    "U",
+    "A"
+   ]
+  },
+  "ua5": {
+   "visemes": [
+    "U",
+    "A"
+   ]
+  },
+  "uo": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "uo1": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "uo2": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "uo3": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "uo4": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "uo5": {
+   "visemes": [
+    "U",
+    "O"
+   ]
+  },
+  "uai": {
+   "visemes": [
+    "U",
+    "A",
+    "I"
+   ]
+  },
+  "uai1": {
+   "visemes": [
+    "U",
+    "A",
+    "I"
+   ]
+  },
+  "uai2": {
+   "visemes": [
+    "U",
+    "A",
+    "I"
+   ]
+  },
+  "uai3": {
+   "visemes": [
+    "U",
+    "A",
+    "I"
+   ]
+  },
+  "uai4": {
+   "visemes": [
+    "U",
+    "A",
+    "I"
+   ]
+  },
+  "uai5": {
+   "visemes": [
+    "U",
+    "A",
+    "I"
+   ]
+  },
+  "ui": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "ui1": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "ui2": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "ui3": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "ui4": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "ui5": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "uei": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "uei1": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "uei2": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "uei3": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "uei4": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "uei5": {
+   "visemes": [
+    "U",
+    "E",
+    "I"
+   ]
+  },
+  "ue": {
+   "visemes": [
+    "U",
+    "E"
+   ]
+  },
+  "ue1": {
+   "visemes": [
+    "U",
+    "E"
+   ]
+  },
+  "ue2": {
+   "visemes": [
+    "U",
+    "E"
+   ]
+  },
+  "ue3": {
+   "visemes": [
+    "U",
+    "E"
+   ]
+  },
+  "ue4": {
+   "visemes": [
+    "U",
+    "E"
+   ]
+  },
+  "ue5": {
+   "visemes": [
+    "U",
+    "E"
+   ]
+  },
+  "ve": {
+   "visemes": [
+    "Yu",
+    "E"
+   ]
+  },
+  "ve1": {
+   "visemes": [
+    "Yu",
+    "E"
+   ]
+  },
+  "ve2": {
+   "visemes": [
+    "Yu",
+    "E"
+   ]
+  },
+  "ve3": {
+   "visemes": [
+    "Yu",
+    "E"
+   ]
+  },
+  "ve4": {
+   "visemes": [
+    "Yu",
+    "E"
+   ]
+  },
+  "ve5": {
+   "visemes": [
+    "Yu",
+    "E"
+   ]
+  },
+  "iao": {
+   "visemes": [
+    "I",
+    "A",
+    "O"
+   ]
+  },
+  "iao1": {
+   "visemes": [
+    "I",
+    "A",
+    "O"
+   ]
+  },
+  "iao2": {
+   "visemes": [
+    "I",
+    "A",
+    "O"
+   ]
+  },
+  "iao3": {
+   "visemes": [
+    "I",
+    "A",
+    "O"
+   ]
+  },
+  "iao4": {
+   "visemes": [
+    "I",
+    "A",
+    "O"
+   ]
+  },
+  "iao5": {
+   "visemes": [
+    "I",
+    "A",
+    "O"
+   ]
+  },
+  "ian": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "ian1": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "ian2": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "ian3": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "ian4": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "ian5": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "iang": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "iang1": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "iang2": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "iang3": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "iang4": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "iang5": {
+   "visemes": [
+    "I",
+    "A",
+    "NgN"
+   ]
+  },
+  "iong": {
+   "visemes": [
+    "I",
+    "O",
+    "NgN"
+   ]
+  },
+  "iong1": {
+   "visemes": [
+    "I",
+    "O",
+    "NgN"
+   ]
+  },
+  "iong2": {
+   "visemes": [
+    "I",
+    "O",
+    "NgN"
+   ]
+  },
+  "iong3": {
+   "visemes": [
+    "I",
+    "O",
+    "NgN"
+   ]
+  },
+  "iong4": {
+   "visemes": [
+    "I",
+    "O",
+    "NgN"
+   ]
+  },
+  "iong5": {
+   "visemes": [
+    "I",
+    "O",
+    "NgN"
+   ]
+  },
+  "uan": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uan1": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uan2": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uan3": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uan4": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uan5": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uang": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uang1": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uang2": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uang3": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uang4": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "uang5": {
+   "visemes": [
+    "U",
+    "A",
+    "NgN"
+   ]
+  },
+  "va": {
+   "visemes": [
+    "Yu",
+    "A"
+   ]
+  },
+  "va1": {
+   "visemes": [
+    "Yu",
+    "A"
+   ]
+  },
+  "va2": {
+   "visemes": [
+    "Yu",
+    "A"
+   ]
+  },
+  "va3": {
+   "visemes": [
+    "Yu",
+    "A"
+   ]
+  },
+  "va4": {
+   "visemes": [
+    "Yu",
+    "A"
+   ]
+  },
+  "va5": {
+   "visemes": [
+    "Yu",
+    "A"
+   ]
+  },
+  "van": {
+   "visemes": [
+    "Yu",
+    "A",
+    "NgN"
+   ]
+  },
+  "van1": {
+   "visemes": [
+    "Yu",
+    "A",
+    "NgN"
+   ]
+  },
+  "van2": {
+   "visemes": [
+    "Yu",
+    "A",
+    "NgN"
+   ]
+  },
+  "van3": {
+   "visemes": [
+    "Yu",
+    "A",
+    "NgN"
+   ]
+  },
+  "van4": {
+   "visemes": [
+    "Yu",
+    "A",
+    "NgN"
+   ]
+  },
+  "van5": {
+   "visemes": [
+    "Yu",
+    "A",
+    "NgN"
+   ]
+  },
+  "AA": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "AE": {
+   "visemes": [
+    "En_Aa"
+   ]
+  },
+  "AH": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "AW": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "AY": {
+   "visemes": [
+    "En_Ah"
+   ]
+  },
+  "EH": {
+   "visemes": [
+    "E"
+   ]
+  },
+  "EY": {
+   "visemes": [
+    "En_Aa"
+   ]
+  },
+  "IH": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "OW": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "OY": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "UH": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "UW": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "DH": {
+   "visemes": [
+    "En_Th"
+   ]
+  },
+  "HH": {
+   "visemes": [
+    "GKH"
+   ]
+  },
+  "JH": {
+   "visemes": [
+    "I"
+   ]
+  },
+  "NX": {
+   "visemes": [
+    "NgN"
+   ]
+  },
+  "TH": {
+   "visemes": [
+    "En_Th"
+   ]
+  },
+  "W": {
+   "visemes": [
+    "U"
+   ]
+  },
+  "Y": {
+   "visemes": [
+    "I"
+   ]
+  }
+ },
+ "visemeRemapping": {
+  "BPM": "BPM",
+  "F": "F",
+  "DTN": "DTN",
+  "L": "DTN",
+  "GKH": "DTN",
+  "JQX": "I",
+  "ZhChShR": "I",
+  "En_R": "DTN",
+  "ZCS": "DTN",
+  "A": "A",
+  "O": "O",
+  "E": "E",
+  "I": "I",
+  "U": "U",
+  "Yu": "U",
+  "Er": "A",
+  "NgN": "NgN",
+  "En_Ah": "A",
+  "En_Aa": "A",
+  "En_Sh": "DTN",
+  "En_Th": "DTN"
+ },
+ "tagToEmotionTable": {
+  "开心": {
+   "emotions": [
+    {
+     "emotionName": "Happy",
+     "weight": 1.0
+    },
+    {
+     "emotionName": "HappyMouth",
+     "weight": 1.0
+    }
+   ],
+   "fadeInTime": 1.0,
+   "fadeOutTime": 1.0
+  },
+  "难过": {
+   "emotions": [
+    {
+     "emotionName": "Sad",
+     "weight": 1.0
+    },
+    {
+     "emotionName": "SadMouth",
+     "weight": 1.0
+    }
+   ],
+   "fadeInTime": 1.0,
+   "fadeOutTime": 1.0
+  },
+  "生气": {
+   "emotions": [
+    {
+     "emotionName": "Anger",
+     "weight": 1.0
+    },
+    {
+     "emotionName": "AngerMouth",
+     "weight": 1.0
+    }
+   ],
+   "fadeInTime": 1.0,
+   "fadeOutTime": 1.0
+  },
+  "惊讶": {
+   "emotions": [
+    {
+     "emotionName": "Shock",
+     "weight": 1.0
+    },
+    {
+     "emotionName": "ShockMouth",
+     "weight": 1.0
+    }
+   ],
+   "fadeInTime": 1.0,
+   "fadeOutTime": 1.0
+  },
+  "无奈": {
+   "emotions": [
+    {
+     "emotionName": "Sad",
+     "weight": 1.0
+    },
+    {
+     "emotionName": "HappyMouth",
+     "weight": 1.0
+    }
+   ],
+   "fadeInTime": 1.0,
+   "fadeOutTime": 1.0
+  },
+  "得意": {
+   "emotions": [
+    {
+     "emotionName": "Anger",
+     "weight": 1.0
+    },
+    {
+     "emotionName": "HappyMouth",
+     "weight": 1.0
+    }
+   ],
+   "fadeInTime": 1.0,
+   "fadeOutTime": 1.0
+  },
+  "疑惑": {
+   "emotions": [
+    {
+     "emotionName": "Anger",
+     "weight": 1.0
+    },
+    {
+     "emotionName": "NormalMouth",
+     "weight": 1.0
+    }
+   ],
+   "fadeInTime": 1.0,
+   "fadeOutTime": 1.0
+  },
+  "提眉": {
+   "emotions": [
+    {
+     "emotionName": "Happy",
+     "weight": 1.5
+    },
+    {
+     "emotionName": "NormalMouth",
+     "weight": 1.0
+    }
+   ],
+   "fadeInTime": 1.0,
+   "fadeOutTime": 1.0
+  }
+ },
+ "emotionPADTable": {
+  "Joy": {
+   "weights": [
+    {
+     "Key": "P",
+     "Value": 1.0
+    },
+    {
+     "Key": "A",
+     "Value": 1.0
+    },
+    {
+     "Key": "D",
+     "Value": 1.0
+    }
+   ]
+  },
+  "Sadness": {
+   "weights": [
+    {
+     "Key": "P",
+     "Value": -1.0
+    },
+    {
+     "Key": "A",
+     "Value": -1.0
+    },
+    {
+     "Key": "D",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Anger": {
+   "weights": [
+    {
+     "Key": "P",
+     "Value": -1.0
+    },
+    {
+     "Key": "A",
+     "Value": 1.0
+    },
+    {
+     "Key": "D",
+     "Value": 1.0
+    }
+   ]
+  },
+  "Surprise": {
+   "weights": [
+    {
+     "Key": "P",
+     "Value": 0.0
+    },
+    {
+     "Key": "A",
+     "Value": 1.0
+    },
+    {
+     "Key": "D",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Disgust": {
+   "weights": [
+    {
+     "Key": "P",
+     "Value": -1.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "D",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Anticipation": {
+   "weights": [
+    {
+     "Key": "P",
+     "Value": 1.0
+    },
+    {
+     "Key": "A",
+     "Value": 1.0
+    },
+    {
+     "Key": "D",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Trust": {
+   "weights": [
+    {
+     "Key": "P",
+     "Value": 0.0
+    },
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "D",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Fear": {
+   "weights": [
+    {
+     "Key": "P",
+     "Value": -1.0
+    },
+    {
+     "Key": "A",
+     "Value": -1.0
+    },
+    {
+     "Key": "D",
+     "Value": -1.0
+    }
+   ]
+  }
+ }
+}

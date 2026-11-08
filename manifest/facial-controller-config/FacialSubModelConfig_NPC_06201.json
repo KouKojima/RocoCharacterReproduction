@@ -1,0 +1,6515 @@
+{
+ "source": "NRC/Content/NewRoco/DataConfig/FacialConfig/FacialSubModelConfig_NPC_06201.uasset",
+ "controllerConfig": {
+  "LipTogether": {
+   "auGroup": "28_Lip_Suck",
+   "auGroupNeg": "28_Lip_Suck",
+   "attributes": [
+    {
+     "pose": "LipTogether",
+     "weight": 0.0,
+     "jawOpen": 1.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "LipTogether_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "EyeBlink": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "EyeBlink",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "EyeBlink_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "BrowUp": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "BrowUp",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "BrowDown": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "BrowDown",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_Chin_x_position": {
+   "auGroup": "26_Jaw_Drop",
+   "auGroupNeg": "26_Jaw_Drop",
+   "attributes": [
+    {
+     "pose": "Bone_Chin_x_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_Chin_x_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_Chin_y_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_Chin_y_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_Chin_y_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_Chin_z_rotation": {
+   "auGroup": "26_Jaw_Drop",
+   "auGroupNeg": "26_Jaw_Drop",
+   "attributes": [
+    {
+     "pose": "Bone_Chin_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_Chin_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_x_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_MeiMao01_x_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_MeiMao01_x_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_x_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_MeiMao01_x_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_MeiMao01_x_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_y_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_MeiMao01_y_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_y_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_MeiMao01_y_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_MeiMao01_y_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_z_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_MeiMao01_z_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_MeiMao01_z_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_MeiMao01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_MeiMao01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_x_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_ShangYanPi01_x_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_x_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_ShangYanPi01_x_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ShangYanPi01_x_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_y_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_ShangYanPi01_y_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ShangYanPi01_y_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_ShangYanPi01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ShangYanPi01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_XiaYanPi01_x_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_XiaYanPi01_x_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_XiaYanPi01_x_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_XiaYanPi01_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_XiaYanPi01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_XiaYanPi01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_x_position": {
+   "auGroup": "12_Lip_Corner_Puller",
+   "auGroupNeg": "12_Lip_Corner_Puller",
+   "attributes": [
+    {
+     "pose": "Bone_L_ZuiJiao01_x_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ZuiJiao01_x_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_x_rotation": {
+   "auGroup": "12_Lip_Corner_Puller",
+   "auGroupNeg": "12_Lip_Corner_Puller",
+   "attributes": [
+    {
+     "pose": "Bone_L_ZuiJiao01_x_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ZuiJiao01_x_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_x_scale": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_ZuiJiao01_x_scale",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ZuiJiao01_x_scale_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_y_position": {
+   "auGroup": "23_Lip_Tightener",
+   "auGroupNeg": "23_Lip_Tightener",
+   "attributes": [
+    {
+     "pose": "Bone_L_ZuiJiao01_y_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ZuiJiao01_y_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_y_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_ZuiJiao01_y_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ZuiJiao01_y_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_y_scale": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_ZuiJiao01_y_scale",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ZuiJiao01_y_scale_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_z_position": {
+   "auGroup": "14_Dimpler",
+   "auGroupNeg": "14_Dimpler",
+   "attributes": [
+    {
+     "pose": "Bone_L_ZuiJiao01_z_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ZuiJiao01_z_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_ZuiJiao01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ZuiJiao01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_z_scale": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_L_ZuiJiao01_z_scale",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_L_ZuiJiao01_z_scale_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_x_position": {
+   "auGroup": "10_Upper_Lip_Raiser",
+   "auGroupNeg": "10_Upper_Lip_Raiser",
+   "attributes": [
+    {
+     "pose": "Bone_M_ShangZuiChun01_x_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_M_ShangZuiChun01_x_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_x_scale": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_M_ShangZuiChun01_x_scale",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_y_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_M_ShangZuiChun01_y_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_M_ShangZuiChun01_y_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_z_rotation": {
+   "auGroup": "10_Upper_Lip_Raiser",
+   "auGroupNeg": "10_Upper_Lip_Raiser",
+   "attributes": [
+    {
+     "pose": "Bone_M_ShangZuiChun01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_M_ShangZuiChun01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_z_scale": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_M_ShangZuiChun01_z_scale",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_M_ShangZuiChun01_z_scale_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_x_position": {
+   "auGroup": "16_Lower_Lip_Depressor",
+   "auGroupNeg": "16_Lower_Lip_Depressor",
+   "attributes": [
+    {
+     "pose": "Bone_M_XiaZuiChun01_x_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_M_XiaZuiChun01_x_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_y_position": {
+   "auGroup": "23_Lip_Tightener",
+   "auGroupNeg": "23_Lip_Tightener",
+   "attributes": [
+    {
+     "pose": "Bone_M_XiaZuiChun01_y_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_M_XiaZuiChun01_y_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_y_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_M_XiaZuiChun01_y_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_M_XiaZuiChun01_y_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_z_rotation": {
+   "auGroup": "23_Lip_Tightener",
+   "auGroupNeg": "23_Lip_Tightener",
+   "attributes": [
+    {
+     "pose": "Bone_M_XiaZuiChun01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_M_XiaZuiChun01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_z_scale": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_M_XiaZuiChun01_z_scale",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_M_XiaZuiChun01_z_scale_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_x_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_MeiMao01_x_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_MeiMao01_x_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_x_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_MeiMao01_x_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_MeiMao01_x_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_y_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_MeiMao01_y_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_y_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_MeiMao01_y_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_MeiMao01_y_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_z_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_MeiMao01_z_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_MeiMao01_z_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_MeiMao01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_MeiMao01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_x_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_ShangYanPi01_x_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_x_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_ShangYanPi01_x_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_ShangYanPi01_x_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_y_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_ShangYanPi01_y_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_ShangYanPi01_y_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_z_position": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_ShangYanPi01_z_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_ShangYanPi01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_ShangYanPi01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_XiaYanPi01_x_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_XiaYanPi01_x_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_XiaYanPi01_y_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_XiaYanPi01_y_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_XiaYanPi01_y_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_XiaYanPi01_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_XiaYanPi01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_XiaYanPi01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_x_position": {
+   "auGroup": "12_Lip_Corner_Puller",
+   "auGroupNeg": "12_Lip_Corner_Puller",
+   "attributes": [
+    {
+     "pose": "Bone_R_ZuiJiao01_x_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_ZuiJiao01_x_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_x_rotation": {
+   "auGroup": "12_Lip_Corner_Puller",
+   "auGroupNeg": "12_Lip_Corner_Puller",
+   "attributes": [
+    {
+     "pose": "Bone_R_ZuiJiao01_x_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_ZuiJiao01_x_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_x_scale": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_ZuiJiao01_x_scale",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_ZuiJiao01_x_scale_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_y_position": {
+   "auGroup": "23_Lip_Tightener",
+   "auGroupNeg": "23_Lip_Tightener",
+   "attributes": [
+    {
+     "pose": "Bone_R_ZuiJiao01_y_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_y_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_ZuiJiao01_y_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_y_scale": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_ZuiJiao01_y_scale",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_ZuiJiao01_y_scale_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_z_position": {
+   "auGroup": "14_Dimpler",
+   "auGroupNeg": "14_Dimpler",
+   "attributes": [
+    {
+     "pose": "Bone_R_ZuiJiao01_z_position",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_ZuiJiao01_z_position_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_R_ZuiJiao01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_R_ZuiJiao01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_Tongue01_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_Tongue01_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_Tongue01_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  },
+  "Bone_Tongue02_z_rotation": {
+   "auGroup": "",
+   "auGroupNeg": "",
+   "attributes": [
+    {
+     "pose": "Bone_Tongue02_z_rotation",
+     "weight": 1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    },
+    {
+     "pose": "Bone_Tongue02_z_rotation_Neg",
+     "weight": -1.0,
+     "jawOpen": 0.0,
+     "blinkScale": 0.0
+    }
+   ]
+  }
+ },
+ "lipWeightTable": {
+  "LipTogether": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "EyeBlink": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "BrowUp": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "BrowDown": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_Chin_x_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.06
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.06
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.04
+    },
+    {
+     "Key": "E",
+     "Value": -0.06
+    },
+    {
+     "Key": "F",
+     "Value": -0.06
+    },
+    {
+     "Key": "I",
+     "Value": -0.06
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.06
+    },
+    {
+     "Key": "O",
+     "Value": -0.06
+    },
+    {
+     "Key": "U",
+     "Value": -0.06
+    }
+   ]
+  },
+  "Bone_Chin_y_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": -0.38
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_Chin_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.51
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.2
+    },
+    {
+     "Key": "DTN",
+     "Value": -0.04
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": -0.2
+    },
+    {
+     "Key": "I",
+     "Value": 0.36
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.07
+    },
+    {
+     "Key": "O",
+     "Value": 1.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.28
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_x_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_y_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_z_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_x_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_XiaYanPi01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_XiaYanPi01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_x_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.01
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.31
+    },
+    {
+     "Key": "DTN",
+     "Value": -0.17
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": -0.25
+    },
+    {
+     "Key": "I",
+     "Value": -0.16
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.15
+    },
+    {
+     "Key": "O",
+     "Value": -1.0
+    },
+    {
+     "Key": "U",
+     "Value": -0.25
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.3
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.45
+    },
+    {
+     "Key": "DTN",
+     "Value": -0.37
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": -0.82
+    },
+    {
+     "Key": "I",
+     "Value": 0.05
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.71
+    },
+    {
+     "Key": "O",
+     "Value": -0.54
+    },
+    {
+     "Key": "U",
+     "Value": 0.01
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_x_scale": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": -0.5
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_y_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.14
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.23
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.14
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.3
+    },
+    {
+     "Key": "I",
+     "Value": 0.53
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.08
+    },
+    {
+     "Key": "O",
+     "Value": 0.41
+    },
+    {
+     "Key": "U",
+     "Value": 0.87
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.77
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.69
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": -1.0
+    },
+    {
+     "Key": "I",
+     "Value": -0.77
+    },
+    {
+     "Key": "NgN",
+     "Value": -1.0
+    },
+    {
+     "Key": "O",
+     "Value": -0.77
+    },
+    {
+     "Key": "U",
+     "Value": -0.78
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_y_scale": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": -0.5
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_z_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.3
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.36
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.17
+    },
+    {
+     "Key": "E",
+     "Value": 0.14
+    },
+    {
+     "Key": "F",
+     "Value": -0.03
+    },
+    {
+     "Key": "I",
+     "Value": 0.46
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.16
+    },
+    {
+     "Key": "O",
+     "Value": -0.64
+    },
+    {
+     "Key": "U",
+     "Value": -0.88
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -1.0
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.31
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": -0.66
+    },
+    {
+     "Key": "I",
+     "Value": -1.0
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.66
+    },
+    {
+     "Key": "O",
+     "Value": -1.0
+    },
+    {
+     "Key": "U",
+     "Value": -0.31
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_z_scale": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": -0.5
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_x_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.36
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.04
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.85
+    },
+    {
+     "Key": "E",
+     "Value": 0.29
+    },
+    {
+     "Key": "F",
+     "Value": 0.39
+    },
+    {
+     "Key": "I",
+     "Value": -0.12
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.41
+    },
+    {
+     "Key": "O",
+     "Value": 0.25
+    },
+    {
+     "Key": "U",
+     "Value": 1.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_x_scale": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 1.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_y_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.85
+    },
+    {
+     "Key": "DTN",
+     "Value": 1.0
+    },
+    {
+     "Key": "E",
+     "Value": -0.69
+    },
+    {
+     "Key": "F",
+     "Value": 1.0
+    },
+    {
+     "Key": "I",
+     "Value": -0.69
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.08
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.36
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.31
+    },
+    {
+     "Key": "DTN",
+     "Value": 1.0
+    },
+    {
+     "Key": "E",
+     "Value": -0.27
+    },
+    {
+     "Key": "F",
+     "Value": 0.91
+    },
+    {
+     "Key": "I",
+     "Value": -0.27
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.35
+    },
+    {
+     "Key": "O",
+     "Value": -0.36
+    },
+    {
+     "Key": "U",
+     "Value": 0.76
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_z_scale": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.99
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_x_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.85
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.11
+    },
+    {
+     "Key": "E",
+     "Value": -0.1
+    },
+    {
+     "Key": "F",
+     "Value": 1.0
+    },
+    {
+     "Key": "I",
+     "Value": -0.03
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.62
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.63
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_y_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.01
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.67
+    },
+    {
+     "Key": "DTN",
+     "Value": -1.0
+    },
+    {
+     "Key": "E",
+     "Value": -0.05
+    },
+    {
+     "Key": "F",
+     "Value": -0.2
+    },
+    {
+     "Key": "I",
+     "Value": -0.15
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.97
+    },
+    {
+     "Key": "O",
+     "Value": -0.01
+    },
+    {
+     "Key": "U",
+     "Value": -0.11
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.94
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.55
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": -0.49
+    },
+    {
+     "Key": "F",
+     "Value": -0.55
+    },
+    {
+     "Key": "I",
+     "Value": -0.49
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.54
+    },
+    {
+     "Key": "O",
+     "Value": -1.0
+    },
+    {
+     "Key": "U",
+     "Value": -0.47
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.08
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.93
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.71
+    },
+    {
+     "Key": "E",
+     "Value": 0.23
+    },
+    {
+     "Key": "F",
+     "Value": 1.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.24
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.84
+    },
+    {
+     "Key": "O",
+     "Value": 0.17
+    },
+    {
+     "Key": "U",
+     "Value": 0.14
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_z_scale": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.62
+    },
+    {
+     "Key": "DTN",
+     "Value": -0.62
+    },
+    {
+     "Key": "E",
+     "Value": -0.62
+    },
+    {
+     "Key": "F",
+     "Value": -0.62
+    },
+    {
+     "Key": "I",
+     "Value": -0.62
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.62
+    },
+    {
+     "Key": "O",
+     "Value": -0.73
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_x_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_y_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_z_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_x_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_z_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_XiaYanPi01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_XiaYanPi01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_XiaYanPi01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.0
+    },
+    {
+     "Key": "U",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_x_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.01
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.35
+    },
+    {
+     "Key": "DTN",
+     "Value": -0.2
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": -0.22
+    },
+    {
+     "Key": "I",
+     "Value": -0.15
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.15
+    },
+    {
+     "Key": "O",
+     "Value": -1.0
+    },
+    {
+     "Key": "U",
+     "Value": -0.24
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.27
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.45
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.63
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.77
+    },
+    {
+     "Key": "I",
+     "Value": -0.08
+    },
+    {
+     "Key": "NgN",
+     "Value": 1.0
+    },
+    {
+     "Key": "O",
+     "Value": 0.72
+    },
+    {
+     "Key": "U",
+     "Value": -0.08
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_x_scale": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": -0.5
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_y_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.17
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.6
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.18
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.59
+    },
+    {
+     "Key": "I",
+     "Value": 0.82
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.04
+    },
+    {
+     "Key": "O",
+     "Value": 0.64
+    },
+    {
+     "Key": "U",
+     "Value": 1.01
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 1.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.8
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.93
+    },
+    {
+     "Key": "I",
+     "Value": 0.8
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.93
+    },
+    {
+     "Key": "O",
+     "Value": 0.45
+    },
+    {
+     "Key": "U",
+     "Value": 0.8
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_y_scale": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": 0.0
+    },
+    {
+     "Key": "BPM",
+     "Value": 0.0
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.0
+    },
+    {
+     "Key": "I",
+     "Value": 0.0
+    },
+    {
+     "Key": "NgN",
+     "Value": 0.0
+    },
+    {
+     "Key": "O",
+     "Value": -0.5
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_z_position": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.23
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.26
+    },
+    {
+     "Key": "DTN",
+     "Value": -0.14
+    },
+    {
+     "Key": "E",
+     "Value": -0.24
+    },
+    {
+     "Key": "F",
+     "Value": -0.06
+    },
+    {
+     "Key": "I",
+     "Value": -0.52
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.23
+    },
+    {
+     "Key": "O",
+     "Value": 0.54
+    },
+    {
+     "Key": "U",
+     "Value": 0.89
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -1.0
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.18
+    },
+    {
+     "Key": "DTN",
+     "Value": 0.0
+    },
+    {
+     "Key": "E",
+     "Value": 0.0
+    },
+    {
+     "Key": "F",
+     "Value": 0.01
+    },
+    {
+     "Key": "I",
+     "Value": -0.18
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.06
+    },
+    {
+     "Key": "O",
+     "Value": -0.2
+    },
+    {
+     "Key": "U",
+     "Value": -0.18
+    }
+   ]
+  },
+  "Bone_Tongue01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -1.0
+    },
+    {
+     "Key": "BPM",
+     "Value": -1.0
+    },
+    {
+     "Key": "DTN",
+     "Value": -0.56
+    },
+    {
+     "Key": "E",
+     "Value": -1.0
+    },
+    {
+     "Key": "F",
+     "Value": -1.0
+    },
+    {
+     "Key": "I",
+     "Value": -1.0
+    },
+    {
+     "Key": "NgN",
+     "Value": -1.0
+    },
+    {
+     "Key": "O",
+     "Value": -1.0
+    },
+    {
+     "Key": "U",
+     "Value": -1.0
+    }
+   ]
+  },
+  "Bone_Tongue02_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "A",
+     "Value": -0.45
+    },
+    {
+     "Key": "BPM",
+     "Value": -0.45
+    },
+    {
+     "Key": "DTN",
+     "Value": -1.0
+    },
+    {
+     "Key": "E",
+     "Value": -0.45
+    },
+    {
+     "Key": "F",
+     "Value": -0.45
+    },
+    {
+     "Key": "I",
+     "Value": -0.45
+    },
+    {
+     "Key": "NgN",
+     "Value": -0.45
+    },
+    {
+     "Key": "O",
+     "Value": -0.45
+    },
+    {
+     "Key": "U",
+     "Value": -0.45
+    }
+   ]
+  }
+ },
+ "emotionWeightTable": {
+  "LipTogether": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "EyeBlink": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "BrowUp": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "BrowDown": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_Chin_x_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_Chin_y_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_Chin_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_x_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.41
+    },
+    {
+     "Key": "惊讶",
+     "Value": 1.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -0.24
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.1
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.51
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": -0.04
+    },
+    {
+     "Key": "惊讶",
+     "Value": 1.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -0.52
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.2
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.91
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_y_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.77
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.65
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.47
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.47
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 1.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.1
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.35
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 1.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.6
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.07
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_z_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": -0.18
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.24
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -1.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.62
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_MeiMao01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.04
+    },
+    {
+     "Key": "惊讶",
+     "Value": -1.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.52
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.2
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": -0.91
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_x_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 1.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.03
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.03
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 1.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.24
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": -0.79
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": -0.05
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.4
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.13
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.29
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": -0.44
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ShangYanPi01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": -0.19
+    },
+    {
+     "Key": "惊讶",
+     "Value": -0.48
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.51
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.27
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.4
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_XiaYanPi01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.69
+    },
+    {
+     "Key": "惊讶",
+     "Value": -0.17
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -0.72
+    },
+    {
+     "Key": "疑惑",
+     "Value": -1.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.03
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_XiaYanPi01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": -0.72
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.44
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -0.11
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.29
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": -0.1
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_x_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_x_scale": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_y_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_y_scale": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_z_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_L_ZuiJiao01_z_scale": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_x_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_x_scale": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_y_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_ShangZuiChun01_z_scale": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_x_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_y_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_M_XiaZuiChun01_z_scale": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_x_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.33
+    },
+    {
+     "Key": "惊讶",
+     "Value": 1.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -0.18
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.04
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.51
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.08
+    },
+    {
+     "Key": "惊讶",
+     "Value": -1.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.49
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.1
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": -0.94
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_y_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.82
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.67
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.51
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.64
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 1.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": -0.27
+    },
+    {
+     "Key": "惊讶",
+     "Value": -0.39
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -1.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.64
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": -0.16
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_z_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": -0.21
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 1.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.63
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": -0.09
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_MeiMao01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.08
+    },
+    {
+     "Key": "惊讶",
+     "Value": -1.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.48
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.1
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": -0.94
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_x_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 1.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": -0.05
+    },
+    {
+     "Key": "惊讶",
+     "Value": -0.06
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -1.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.28
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.9
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.12
+    },
+    {
+     "Key": "惊讶",
+     "Value": -0.73
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -0.28
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.26
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.17
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_z_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 1.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ShangYanPi01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": -0.1
+    },
+    {
+     "Key": "惊讶",
+     "Value": -0.47
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.69
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.23
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.43
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_XiaYanPi01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.49
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.09
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.77
+    },
+    {
+     "Key": "疑惑",
+     "Value": 1.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.18
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_XiaYanPi01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.4
+    },
+    {
+     "Key": "惊讶",
+     "Value": -0.07
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -0.4
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 1.01
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_XiaYanPi01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": -0.63
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.44
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": -0.14
+    },
+    {
+     "Key": "疑惑",
+     "Value": -0.29
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": -0.15
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_x_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_x_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_x_scale": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_y_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_y_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_y_scale": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_z_position": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_R_ZuiJiao01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_Tongue01_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  },
+  "Bone_Tongue02_z_rotation": {
+   "weightValues": [
+    {
+     "Key": "厌恶",
+     "Value": 0.0
+    },
+    {
+     "Key": "害怕",
+     "Value": 0.0
+    },
+    {
+     "Key": "开心",
+     "Value": 0.0
+    },
+    {
+     "Key": "惊讶",
+     "Value": 0.0
+    },
+    {
+     "Key": "愤怒",
+     "Value": 0.0
+    },
+    {
+     "Key": "烦躁",
+     "Value": 0.0
+    },
+    {
+     "Key": "生气",
+     "Value": 0.0
+    },
+    {
+     "Key": "疑惑",
+     "Value": 0.0
+    },
+    {
+     "Key": "调皮",
+     "Value": 0.0
+    },
+    {
+     "Key": "难过",
+     "Value": 0.0
+    },
+    {
+     "Key": "骄傲",
+     "Value": 0.0
+    }
+   ]
+  }
+ }
+}
