@@ -22,7 +22,7 @@ in vec3 vWorldPosition,vNormal;in vec4 vTangent,vColor;in vec2 vUv,vUv1;
 out vec4 outColor;
 uniform vec3 cameraPosition,uLightDir,uLightColor,uAmbientColor;
 uniform vec4 uMat[64];uniform sampler2D uBase,uMask,uId,uFace,uMatcap;
-uniform int uDebug;uniform float uVertexControls;
+uniform int uDebug;uniform float uVertexControls;uniform vec4 uGazeOffset;
 uniform sampler2D uShadowMap;uniform mat4 uShadowMatrix;uniform float uShadowStrength;
 float uShadow;
 float worldShadow(vec3 p){
@@ -43,7 +43,11 @@ vec2 eyeUV(){
  float chooseR=step(vUv.x,.5);
  vec4 controls=mix(uMat[7].xwyz,uMat[6].xwyz,chooseR);
  vec2 p=fract(vUv*vec2(2.,1.))-.5;
- return p*(1.+controls.xz)+.5-vec2(controls.w*uMat[28].x,controls.y);
+ // Original per-clip ec_u/v_offset_* curves are added as raw UV offsets to
+ // their own eye. The sliders keep their mirrored sign convention; the original
+ // curves do not go through it (their left/right values are near-identical).
+ vec2 gaze=uGazeOffset.xy+chooseR*(uGazeOffset.zw-uGazeOffset.xy);
+ return p*(1.+controls.xz)+.5-vec2(controls.w*uMat[28].x,controls.y)+gaze;
 }
 vec3 eyeBase(){
  vec4 pupil=texture(uBase,eyeUV());

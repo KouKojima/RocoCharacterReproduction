@@ -35,6 +35,13 @@ export async function loadMorph(root='assets/'){
   return {targets,curves,buffer};
  }catch(error){return null;}
 }
+export async function loadGaze(root='assets/'){
+ // Original per-clip eye UV offsets are optional: NPC_00401 was extracted with
+ // the older layout and has no native float curves at all.
+ try{
+  return await loadAsset(root+'gaze/curves.json',true);
+ }catch(error){return null;}
+}
 export async function loadModel(root='assets/'){
   const [buffer,metadata]=await Promise.all([loadAsset(root+'character.bin'),loadAsset(root+'character.json',true)]);
   const head=new Uint32Array(buffer,0,4),[magic,nv,ni,nu]=head;if(magic!==0x4343524e)throw Error('模型数据头不正确');let offset=16;

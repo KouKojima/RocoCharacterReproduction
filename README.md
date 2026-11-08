@@ -14,7 +14,7 @@
 
 **脸会动。**原版的脸不是骨骼动的，是 blend shape（变形目标）驱动的：每个动作序列自带以变形目标命名的浮点曲线，曲线值就是权重。所以选中「对话动作 · World_Dialogue_1」，嘴就会跟着开合——这不是我们额外造的动画，是原版数据本身的行为。路易斯的 104 根骨骼里连一根下巴/下颌/唇骨都没有，嘴在骨骼上本来就无路可走。
 
-`dist/原版人物渲染预览.html`（89.1 MB）是成品：双击即可打开，无需服务器、无需联网。该文件由下方「快速上手」的打包步骤在本地生成，**不随仓库分发**（避免大文件入库与素材分发风险）。
+`dist/原版人物渲染预览.html`（89.2 MB）是成品：双击即可打开，无需服务器、无需联网。该文件由下方「快速上手」的打包步骤在本地生成，**不随仓库分发**（避免大文件入库与素材分发风险）。
 
 > **版权提示**
 > `dist/` 里的单文件内联了从游戏客户端提取的模型与贴图（base64 封装）。这些素材的著作权属于游戏权利方。本仓库仅供技术研究与个人学习使用；如果你要公开分发或商用，请自行确认合规性，或只取 `tools/` 与 `preview/` 中的源码部分重新用你自己的资源构建。
@@ -28,7 +28,7 @@
 │   ├── NrcChar/                C# 资源提取器（网格 / 材质 / 贴图 / 动作 / 对话曲线）
 │   ├── CharScan/               角色资源扫描器
 │   ├── LibScanner/             库与资源枚举器
-│   └── charextract/            Python 装配管线（材质解析 / 动作准备 / 着色器转译 / 打包）
+│   └── charextract/            Python 装配管线（材质解析 / 动作准备 / 注视曲线导出 / 着色器转译 / 打包）
 ├── preview/                    浏览器预览前端源码
 │   ├── app.js materials.js     渲染与材质
 │   ├── animation.js assets.js  原版动作与资源加载
@@ -69,11 +69,14 @@ dotnet run --project tools/NrcChar -c Release -- --paks <游戏>\Win64\NRC\Conte
 # 4. 装配 → 导出变形目标 → 构建 → 打包
 python tools/charextract/prepare_multi.py --data <work> --materials <materials> --shaders <shaders> --manifest manifest/characters.manifest.json --out <out>
 python tools/charextract/prepare_morph.py --data <work> --chars <work>/chars --out <out>/preview/assets
+python tools/charextract/prepare_eye_gaze.py --data <work> --chars <work>/chars --out <out>/preview/assets
 node preview/build.mjs
 python tools/charextract/pack_multi.py --data <out> --code preview
 ```
 
 > `prepare_morph.py` 必须排在 `prepare_multi.py` **之后**——后者会重建 `<out>/assets/<角色>/animation/`。它从 `chars/<角色>/animation-research/` 里读 `morph-deltas.bin` 与原生 clip 的浮点曲线，按名字配对后写到 `<out>/assets/<角色>/morph/`。没有变形目标的角色（如 `NPC_00401`）自动跳过，不报错。
+
+> `prepare_eye_gaze.py` 把 `prepare_morph.py` 丢弃的 `ec_u/v_offset_*` 注视曲线单独导出到 `<out>/preview/assets/<角色>/gaze/`（原值，不做符号/缩放猜测）。没有原生曲线布局的角色（如 `NPC_00401`）同样自动跳过，前端会回退为 0。
 
 细节见 [docs/04-复现步骤.md](docs/04-复现步骤.md)。
 
@@ -83,6 +86,7 @@ python tools/charextract/pack_multi.py --data <out> --code preview
 - 人形动作蒙皮校验：`passed = true`，参考蒙皮误差 1.83e-05 cm，四元数范数误差 1.19e-07，权重和 [1.0, 1.0000001]。
 - 变形目标：`morph-deltas.bin` 的 magic / 偏移 / 顶点数逐目标校验通过；伊里斯 42 个、路易斯 34 个目标，单目标影响 42–524 / 39–457 个顶点；命中真实变形目标的曲线 535 / 125 条，关键帧 16,121 / 2,175 个，插值以 `RCIM_Cubic` 为主（走 Hermite 切线求值）。
 - 浏览器回归：三个角色均 0 console error / 0 warning，142–144 FPS（WebGL 2）。
+- **原版眼睛注视**：`ec_u/v_offset_*` 已从原生 clip 导出，按动作时间轴采样后经 `uGazeOffset` 叠加到左右眼 UV。离线 `file://` 打开后复核 7 个 GL program 全部链接成功（含 `NRC eyes`）、`glError=0`；同帧开关 A/B 确认该 uniform 生效。**深度调查后精确化的限制**：眼睛 PS 的符号/缩放规则其实已从 DXBC 逐指令确定（水平 ×2、取负、按眼镜像），当前实现是在 UV 层另开通道、绕过了它们；真正未定案的是 `ec_*` 曲线值在参数链中的层级，详见 `docs/05`。
 - 表情 A/B（同一帧对照，伊里斯 `World_Dialogue_1`，时间轴 0.567 ≈ t = 2.27 s）：**变形目标开 → 嘴张开、眉毛变化；变形目标关 → 嘴闭合成一条细线、眉毛回到中性。**「对话动作」自带 14 条命中变形目标的曲线，所以选它嘴就会动。
 
 详细数据见 [docs/02](docs/02-材质与着色器还原.md) 与 [docs/03](docs/03-动画还原.md)。

@@ -86,7 +86,7 @@ def main():
         "extrapolation": "constant before first key and after last key",
         "tangentWeights": "none",
         "cubicEvaluation": "For interval a,b: u=(t-a.time)/(b.time-a.time); h00*a.value+h10*dt*a.leaveTangent+h01*b.value+h11*dt*b.arriveTangent; h00=2u^3-3u^2+1,h10=u^3-2u^2+u,h01=-2u^3+3u^2,h11=u^3-u^2.",
-        "warning": "Values are original signed curves, not normalized positive weights. Native facial runtime sign gating / multi-pose composition has not been established. Preserve these values rather than claiming a guessed blend is exact original playback. The source name is TestData and does not prove that a released dialogue uses it.",
+        "warning": "Values are original signed curves, not normalized positive weights. Sign handling and multi-pose composition are defined by the original FacialSubModelConfig.controllerConfig mapping (curve -> attributes with pose/weight/jawOpen/blinkScale); see docs/06-面部混合语义.md. What is still missing for characters without a PoseAsset is the full-weight per-bone/per-axis delta, not the rule; see docs/05-未完成与限制.md. Preserve these values rather than claiming a guessed blend is exact original playback. The source name is TestData and does not prove that a released dialogue uses it.",
         "curves": out,
         "signedPairs": mirrors,
     }

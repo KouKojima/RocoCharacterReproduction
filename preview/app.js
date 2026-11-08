@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {loadAsset,loadTextures,loadModel,loadMorph} from './assets.js';
+import {loadAsset,loadTextures,loadModel,loadMorph,loadGaze} from './assets.js';
 import {makeMaterial,makeOutline,makePost,makeGround} from './materials.js';
-import {loadNativeAnimation} from './animation.js';
+import {loadNativeAnimation,evaluateSourceCurve} from './animation.js';
 
 const $=id=>document.getElementById(id),canvas=$('viewport'),stage=$('stage');
-const state={body:true,face:true,eyes:true,outline:true,morph:true,debug:0,outlineWidth:1,animateEyes:false,eyeSpeed:1,leftX:0,leftY:0,rightX:0,rightY:0,pupilScale:1,vertexControls:true,lightAzimuth:-35,lightElevation:38,sun:1,ambient:.65,shadow:.65,turntable:false,ground:true,lightSweep:false,animationClip:'World_Idle',faceClip:'none',poseName:'Reference',nativePlaying:true,nativeSpeed:1,nativeLoop:true,inPlace:true,faceWeight:1,poseWeight:1};
+const state={body:true,face:true,eyes:true,outline:true,morph:true,debug:0,outlineWidth:1,animateEyes:false,gaze:true,eyeSpeed:1,leftX:0,leftY:0,rightX:0,rightY:0,pupilScale:1,vertexControls:true,lightAzimuth:-35,lightElevation:38,sun:1,ambient:.65,shadow:.65,turntable:false,ground:true,lightSweep:false,animationClip:'World_Idle',faceClip:'none',poseName:'Reference',nativePlaying:true,nativeSpeed:1,nativeLoop:true,inPlace:true,faceWeight:1,poseWeight:1};
 const defaults={...state};
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.outputColorSpace=THREE.LinearSRGBColorSpace;renderer.toneMapping=THREE.NoToneMapping;
@@ -19,7 +19,7 @@ shadowTarget.depthTexture=new THREE.DepthTexture(1536,1536,THREE.UnsignedIntType
 const shadowDepthMaterial=new THREE.MeshDepthMaterial({side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:3,polygonOffsetUnits:4});
 const shared={uLightDir:{value:lightDir},uLightColor:{value:new THREE.Vector3(1,.975,.94)},uAmbientColor:{value:new THREE.Vector3(.59,.64,.69)},uShadowMap:{value:shadowTarget.depthTexture},uShadowMatrix:{value:new THREE.Matrix4()},uShadowStrength:{value:state.shadow},uViewport:{value:new THREE.Vector2()},uInverseViewProjection:{value:new THREE.Matrix4()},uDebug:{value:0},uVertexControls:{value:1},uOutlineWidth:{value:1},uBasisX:{value:new THREE.Vector3(1,0,0)},uBasisY:{value:new THREE.Vector3(0,0,-1)},uBasisZ:{value:new THREE.Vector3(0,1,0)},uCameraRight:{value:new THREE.Vector3()},uCameraForward:{value:new THREE.Vector3()},uViewRotation:{value:new THREE.Matrix3()},uDirectScale:{value:1},uAmbientStrength:{value:state.ambient},uAmbientDesaturation:{value:0},uAmbientScale:{value:1},uColorDesaturation:{value:0},uShadowBias:{value:0},uAmbientDarkAdd:{value:0},uRimEnabled:{value:1}};
 const ground=makeGround(shared);scene.add(ground);const post=makePost(renderer);
-let assets,model,materials,animator,eyeUniforms,baseEyeRows,loaded=false,shadowDirty=true,lastLight='',elapsed=0,paused=false,viewMode='full',lastRotation=0;
+let assets,model,materials,animator,eyeUniforms,baseEyeRows,loaded=false,shadowDirty=true,lastLight='',elapsed=0,paused=false,viewMode='full',lastRotation=0,gazeData=null,lastGaze=null;
 const faceBasis={uBasisX:{value:new THREE.Vector3(1,0,0)},uBasisY:{value:new THREE.Vector3(0,0,-1)},uBasisZ:{value:new THREE.Vector3(0,1,0)}};
 const matRows=rows=>Array.from({length:64},(_,i)=>new THREE.Vector4(...(rows[i]??[0,0,0,0])));
 
@@ -27,6 +27,7 @@ function textureName(instance,key){const ref=instance.texture[key];return ref?.O
 function uniformsFor(kind,buffer,bindings){
  const u={...shared,uMat:{value:matRows(buffer.buffer)}};
  if(kind==='face'||kind==='eyes')Object.assign(u,faceBasis);
+ if(kind==='eyes')u.uGazeOffset={value:new THREE.Vector4()};
  for(const name of ['uBase','uMask','uId','uFace','uMatcap','uHue','uRamp'])u[name]={value:assets[bindings[name]??'TestResMainTex01']};
  uniformSets.push(u);return u;
 }
@@ -54,8 +55,35 @@ function syncVisibility(){
  ground.visible=state.ground;
  shared.uDebug.value=post.uniforms.uDebug.value=Number(state.debug);shared.uOutlineWidth.value=state.outlineWidth;shared.uVertexControls.value=state.vertexControls?1:0;
 }
+// The original per-clip ec_u/v_offset_* curves are sampled against the body
+// clip's own timeline. Values are used verbatim; nothing here guesses a sign
+// or a scale for MF_FacialAnimationUV (see docs/05).
+function sampleGaze(){
+ if(!gazeData||!animator||!state.gaze)return null;
+ const clip=gazeData.clips?.[animator.body],curves=clip?.curves;
+ const info={clip:animator.body,time:animator.displayTime,active:!!curves,channels:curves?Object.keys(curves).length:0};
+ if(!curves)return info;
+ const at=name=>{const c=curves[name];return c?evaluateSourceCurve({interpolation:c.interp,keys:c.keys},info.time):0;};
+ info.uL=at('ec_u_offset_l');info.vL=at('ec_v_offset_l');info.uR=at('ec_u_offset_r');info.vR=at('ec_v_offset_r');
+ return info;
+}
+let gazeNoteKey='';
+function updateGazeNote(g){
+ const el=$('gazeNote');if(!el)return;
+ let text,key;
+ if(!gazeData){text='此角色没有提取到原版注视曲线（旧提取布局），可用下方手动滑杆。';key='none';}
+ else if(!state.gaze){text='原版注视曲线已关闭，可用手动滑杆或演示扫视。';key='off';}
+ else if(!g?.active){text='当前动作「'+(g?.clip??'—')+'」未带注视曲线；该角色有 '+Object.keys(gazeData.clips).length+' 个动作带数据。';key=(g?.clip??'')+'|none';}
+ else{text='原版注视 · '+g.channels+' 通道 · 原始值直接叠加 UV（材质函数符号/缩放未逐帧对拍）。';key=g.clip+'|'+g.channels;}
+ if(key!==gazeNoteKey){el.textContent=text;gazeNoteKey=key;}
+}
 function updateEyes(t){
  if(!eyeUniforms)return;
+ const gaze=sampleGaze();lastGaze=gaze;updateGazeNote(gaze);
+ if(eyeUniforms.uGazeOffset){
+  const v=eyeUniforms.uGazeOffset.value;
+  if(gaze?.active)v.set(gaze.uL,gaze.vL,gaze.uR,gaze.vR);else v.set(0,0,0,0);
+ }
  const rows=eyeUniforms.uMat.value,b=baseEyeRows;
  let lx=state.leftX,ly=state.leftY,rx=state.rightX,ry=state.rightY;
  if(state.animateEyes){
@@ -91,18 +119,33 @@ function setState(patch){
   if('faceClip'in patch)animator.setFace(patch.faceClip);
   if('poseName'in patch)animator.setPose(patch.poseName);
   animator.playing=state.nativePlaying;animator.speed=state.nativeSpeed;animator.loop=state.nativeLoop;animator.inPlace=state.inPlace;animator.poseWeight=state.poseWeight;animator.faceWeight=state.faceWeight;animator.morphEnabled=state.morph;animator.dirty=true;
+  if(state.nativePlaying&&animator.atEnd)animator.seek(0);
  }
  lightUpdate();syncVisibility();shadowDirty=true;
 }
 for(const key of Object.keys(state)){
  const el=$(key);if(!el)continue;
- el.addEventListener('input',()=>{const value=el.type==='checkbox'?el.checked:el.type==='range'||key==='debug'?Number(el.value):el.value;if(['leftX','leftY','rightX','rightY'].includes(key)&&state.animateEyes)setState({animateEyes:false});setState({[key]:value});});displayValue(key);
+ el.addEventListener('input',()=>{
+  const value=el.type==='checkbox'?el.checked:el.type==='range'||key==='debug'?Number(el.value):el.value;
+  const patch={[key]:value};
+  if(['leftX','leftY','rightX','rightY'].includes(key)&&state.animateEyes)patch.animateEyes=false;
+  // Synthetic sweep and original per-clip curves are alternative timing
+  // sources; enabling either one disables the other to avoid double motion.
+  if(key==='animateEyes'&&value)patch.gaze=false;
+  if(key==='gaze'&&value)patch.animateEyes=false;
+  setState(patch);
+ });displayValue(key);
 }
 for(const b of document.querySelectorAll('[data-view]'))b.onclick=()=>setView(b.dataset.view);
 $('reset').onclick=()=>{setState(defaults);elapsed=0;setView('full');};
 $('lightSweep').onclick=()=>{state.lightSweep=!state.lightSweep;$('lightSweep').classList.toggle('active',state.lightSweep);};
 $('shot').onclick=()=>{drawFrame(0);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download='洛克王国-原版人物-'+viewMode+'.png';a.click();};
-let last=performance.now(),fpsTimer=0,frames=0;
+// 只注册一次：放进 populateAnimationControls 会随每次切角色叠加一份，
+// 拖动一次进度条就重复 seek + 整帧重绘 N 次。
+$('animationTimeline').addEventListener('input',()=>{if(!animator)return;animator.seek(Number($('animationTimeline').value)*animator.duration);setState({nativePlaying:false});drawFrame(0);});
+$('faceTimeline').addEventListener('input',()=>{if(!animator)return;animator.seekFace(Number($('faceTimeline').value)*animator.faceDuration);setState({nativePlaying:false});drawFrame(0);});
+$('restartAnimation').onclick=()=>{if(!animator)return;animator.seek(0);setState({nativePlaying:true});};
+let last=performance.now(),fpsTimer=0,frames=0,frameErrorLogged=false;
 function drawFrame(dt){
  if(!loaded)return;
  if(!paused)elapsed+=dt;
@@ -116,23 +159,36 @@ function drawFrame(dt){
  shared.uCameraRight.value.setFromMatrixColumn(camera.matrixWorld,0);camera.getWorldDirection(shared.uCameraForward.value);
  const rot=new THREE.Matrix4().makeScale(1,1,-1).multiply(camera.matrixWorldInverse);shared.uViewRotation.value.setFromMatrix4(rot);
  shared.uInverseViewProjection.value.copy(camera.projectionMatrix).multiply(camera.matrixWorldInverse).invert();renderShadow();post.render(scene,camera);
+ if(animator&&animator.playing!==state.nativePlaying){state.nativePlaying=animator.playing;$('nativePlaying').checked=animator.playing;}
  if(animator){const d=animator.duration,t=animator.displayTime,fd=animator.faceDuration,ft=animator.displayFaceTime;$('animationTimeline').value=d?t/d:0;$('animationTime').textContent=t.toFixed(2)+' / '+d.toFixed(2)+' s';$('nativeSource').textContent=animator.body==='reference'?'原版参考姿势':animator.body;$('faceTimeline').disabled=!fd;$('faceTimeline').value=fd?ft/fd:0;$('faceTime-out').textContent=ft.toFixed(2)+' / '+fd.toFixed(2)+' s';$('authoredNote').classList.toggle('hidden',animator.face!=='authored_blink');}
 }
-function tick(now){const dt=Math.min((now-last)/1000,.05);last=now;drawFrame(dt);frames++;fpsTimer+=dt;if(fpsTimer>1){$('frame-status').textContent=Math.round(frames/fpsTimer)+' FPS · WebGL 2';fpsTimer=0;frames=0;}requestAnimationFrame(tick);}
+function tick(now){
+ // 必须先排下一帧：drawFrame 抛异常会让循环永久停摆，之后播放按钮全部失效，
+ // 只有进度条还能动（它的处理函数同步调 drawFrame(0)）。
+ requestAnimationFrame(tick);
+ const dt=(now-last)/1000;last=now;
+ try{drawFrame(dt);}catch(error){if(!frameErrorLogged){frameErrorLogged=true;console.error('渲染帧异常，循环继续运行',error);}}
+ // FPS 用真实墙钟 dt；钳制过的 dt 会把实际 1 FPS 报成 20 FPS，掩盖掉帧。
+ frames++;fpsTimer+=dt;if(fpsTimer>=1){$('frame-status').textContent=Math.round(frames/fpsTimer)+' FPS · WebGL 2';fpsTimer=0;frames=0;}
+}
+// 动画按真实时间推进，切回标签页时重置基准，避免一次性跳过整段隐藏时长。
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)last=performance.now();});
 let characters=[],currentChar=null;
+const animationControlIds=['animationClip','faceClip','poseName','animationTimeline','faceTimeline','restartAnimation','nativePlaying','nativeSpeed','nativeLoop','inPlace','faceWeight','poseWeight','morph'];
 async function disposeCharacter(){
  for(const m of meshes){character.remove(m);m.geometry?.dispose?.();m.material?.dispose?.();}
  for(const o of outlines){character.remove(o);o.geometry?.dispose?.();o.material?.dispose?.();}
  if(assets)for(const t of Object.values(assets))t?.dispose?.();
  meshes.length=0;outlines.length=0;uniformSets.length=0;
- animator=null;eyeUniforms=null;baseEyeRows=null;
+ animator=null;eyeUniforms=null;baseEyeRows=null;gazeData=null;lastGaze=null;gazeNoteKey='';
 }
 async function loadCharacter(entry){
  await disposeCharacter();
  const root='assets/'+entry.dir+'/';
- const [textures,loadedModel,loadedMaterials,loadedMorph]=await Promise.all([loadTextures(root),loadModel(root),loadAsset(root+'materials.json',true),loadMorph(root)]);
- assets=textures;model=loadedModel;materials=loadedMaterials;
+ const [textures,loadedModel,loadedMaterials,loadedMorph,loadedGaze]=await Promise.all([loadTextures(root),loadModel(root),loadAsset(root+'materials.json',true),loadMorph(root),loadGaze(root)]);
+ assets=textures;model=loadedModel;materials=loadedMaterials;gazeData=loadedGaze;
  if(materials.hasAnimation){
+  for(const id of animationControlIds)if($(id))$(id).disabled=false;
   animator=await loadNativeAnimation(model,root+'animation/');
   animator.setMorph(loadedMorph);
   animator.morphEnabled=state.morph;
@@ -143,7 +199,7 @@ async function loadCharacter(entry){
   // shows or the two disagree after a character switch.
   animator.setBody(state.animationClip);animator.setFace(state.faceClip);animator.setPose(state.poseName);
   animator.playing=state.nativePlaying;animator.speed=state.nativeSpeed;animator.loop=state.nativeLoop;animator.inPlace=state.inPlace;animator.poseWeight=state.poseWeight;animator.faceWeight=state.faceWeight;animator.morphEnabled=state.morph;animator.dirty=true;
- }else{for(const id of ['animationClip','faceClip','poseName','animationTimeline','faceTimeline','restartAnimation','nativePlaying','nativeSpeed','nativeLoop','inPlace','faceWeight','poseWeight','morph'])if($(id))$(id).disabled=true;$('animationClip').innerHTML='<option>未提取动作 · 静态模式</option>';$('animationTime').textContent='静态参考姿势';$('nativeSource').textContent='未载入动作数据';}
+ }else{for(const id of animationControlIds)if($(id))$(id).disabled=true;$('animationClip').innerHTML='<option>未提取动作 · 静态模式</option>';$('animationTime').textContent='静态参考姿势';$('nativeSource').textContent='未载入动作数据';}
  const defs=materials.defs;
  const mats={};
  const surfaceKinds=['body','im','face','eyes'].filter(k=>k==='im'?!!materials.buffers.im:true);
@@ -176,8 +232,8 @@ async function init(){
   };
   await loadCharacter(characters[0]);
   $('loading').style.opacity='0';setTimeout(()=>$('loading').classList.add('hidden'),300);
-  window.preview={state,renderer,scene,camera,controls,meshes,outlines,uniforms:shared,eyeUniforms,setState,setView,render:()=>drawFrame(0),pause:(v=true)=>{paused=v;},setTime:t=>{elapsed=t;animator?.seek(t);updateEyes(t);drawFrame(0);},get time(){return elapsed;},get view(){return viewMode;},characters,get character(){return currentChar;},get materials(){return materials;},get animator(){return animator;},get model(){return model;},switchCharacter:id=>{sel.value=id;sel.onchange();},ready:true};
-  requestAnimationFrame(tick);
+  window.preview={state,renderer,scene,camera,controls,meshes,outlines,uniforms:shared,eyeUniforms,setState,setView,render:()=>drawFrame(0),pause:(v=true)=>{paused=v;},setTime:t=>{elapsed=t;animator?.seek(t);updateEyes(t);drawFrame(0);},get time(){return elapsed;},get view(){return viewMode;},characters,get character(){return currentChar;},get materials(){return materials;},get gaze(){return lastGaze;},get gazeData(){return gazeData;},get animator(){return animator;},get model(){return model;},switchCharacter:id=>{sel.value=id;sel.onchange();},ready:true};
+  last=performance.now();requestAnimationFrame(tick);
  }catch(error){console.error(error);$('load-text').textContent='载入失败：'+error.message;$('load-text').classList.add('error');$('loading').querySelector('small').textContent='请按 character/START_HERE.txt 提取本机数据、构建并启动预览';}
 }
 function populateAnimationControls(){
@@ -193,8 +249,5 @@ function populateAnimationControls(){
  if(![...body.options].some(o=>o.value===state.animationClip)){const first=[...body.options].find(o=>o.value!=='reference');if(first){body.value=first.value;state.animationClip=first.value;}}
  if(![...face.options].some(o=>o.value===state.faceClip)){face.value='none';state.faceClip='none';}
  if(![...poses.options].some(o=>o.value===state.poseName)){const first=[...poses.options][0];if(first){poses.value=first.value;state.poseName=first.value;}}
- $('animationTimeline').addEventListener('input',()=>{animator.seek(Number($('animationTimeline').value)*animator.duration);setState({nativePlaying:false});drawFrame(0);});
- $('faceTimeline').addEventListener('input',()=>{animator.seekFace(Number($('faceTimeline').value)*animator.faceDuration);setState({nativePlaying:false});drawFrame(0);});
- $('restartAnimation').onclick=()=>{animator.seek(0);setState({nativePlaying:true});};
 }
 init();
