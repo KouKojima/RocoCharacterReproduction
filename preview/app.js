@@ -27,7 +27,6 @@ function textureName(instance,key){const ref=instance.texture[key];return ref?.O
 function uniformsFor(kind,buffer,bindings){
  const u={...shared,uMat:{value:matRows(buffer.buffer)}};
  if(kind==='face'||kind==='eyes')Object.assign(u,faceBasis);
- if(kind==='eyes')u.uGazeOffset={value:new THREE.Vector4()};
  for(const name of ['uBase','uMask','uId','uFace','uMatcap','uHue','uRamp'])u[name]={value:assets[bindings[name]??'TestResMainTex01']};
  uniformSets.push(u);return u;
 }
@@ -56,8 +55,10 @@ function syncVisibility(){
  shared.uDebug.value=post.uniforms.uDebug.value=Number(state.debug);shared.uOutlineWidth.value=state.outlineWidth;shared.uVertexControls.value=state.vertexControls?1:0;
 }
 // The original per-clip ec_u/v_offset_* curves are sampled against the body
-// clip's own timeline. Values are used verbatim; nothing here guesses a sign
-// or a scale for MF_FacialAnimationUV (see docs/05).
+// clip's own timeline. Raw values are written into the eye material's Move*
+// parameter slots (uMat[6]/[7].z/w), so the per-instruction-verified pixel
+// shader applies the sign, the horizontal UVOffsetScale=2.0 and the per-eye
+// selection itself. See docs/05 and the DXBC listing it cites.
 function sampleGaze(){
  if(!gazeData||!animator||!state.gaze)return null;
  const clip=gazeData.clips?.[animator.body],curves=clip?.curves;
@@ -74,18 +75,19 @@ function updateGazeNote(g){
  if(!gazeData){text='此角色没有提取到原版注视曲线（旧提取布局），可用下方手动滑杆。';key='none';}
  else if(!state.gaze){text='原版注视曲线已关闭，可用手动滑杆或演示扫视。';key='off';}
  else if(!g?.active){text='当前动作「'+(g?.clip??'—')+'」未带注视曲线；该角色有 '+Object.keys(gazeData.clips).length+' 个动作带数据。';key=(g?.clip??'')+'|none';}
- else{text='原版注视 · '+g.channels+' 通道 · 原始值直接叠加 UV（材质函数符号/缩放未逐帧对拍）。';key=g.clip+'|'+g.channels;}
+ else{text='原版注视 · '+g.channels+' 通道 · 原始值写入 Move* 参数层，由已对拍的眼睛 PS 施加符号 / 水平 ×2 / 左右镜像。';key=g.clip+'|'+g.channels;}
  if(key!==gazeNoteKey){el.textContent=text;gazeNoteKey=key;}
 }
 function updateEyes(t){
  if(!eyeUniforms)return;
  const gaze=sampleGaze();lastGaze=gaze;updateGazeNote(gaze);
- if(eyeUniforms.uGazeOffset){
-  const v=eyeUniforms.uGazeOffset.value;
-  if(gaze?.active)v.set(gaze.uL,gaze.vL,gaze.uR,gaze.vR);else v.set(0,0,0,0);
- }
  const rows=eyeUniforms.uMat.value,b=baseEyeRows;
  let lx=state.leftX,ly=state.leftY,rx=state.rightX,ry=state.rightY;
+ // C2: the curves belong to the same parameter layer as the manual sliders.
+ // l/r map to uMat[7]/[6] respectively, reusing the established
+ // -rx / +lx / +ry / +ly convention; the shader then applies sign, x2 and
+ // per-eye selection. No UV-layer bypass.
+ if(gaze?.active){lx+=gaze.uL;ly+=gaze.vL;rx+=gaze.uR;ry+=gaze.vR;}
  if(state.animateEyes){
   // Demonstration timing; UV transforms and independent per-eye controls are
   // the original material mechanism. No invented skeletal motion is applied.
