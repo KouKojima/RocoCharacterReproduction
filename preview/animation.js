@@ -46,6 +46,7 @@ class NativeAnimator{
  }
  get duration(){return this.clips.get(this.body)?.duration??0;}
  get faceDuration(){return this.face==='authored_blink'?this.authored.sourceDuration:this.clips.get(this.face)?.duration??0;}
+ get atEnd(){const d=this.duration||this.faceDuration;return !this.loop&&d>0&&this.time>=d;}
  get displayTime(){return this.clipTime(this.time,this.duration,this.seekBodyEnd);}
  get displayFaceTime(){return this.clipTime(this.faceTime,this.faceDuration,this.seekFaceEnd);}
  setBody(name){this.body=name;this.time=0;this.seekBodyEnd=false;this.dirty=true;}
@@ -79,7 +80,13 @@ class NativeAnimator{
   }
  }
  apply(dt){
-  if(this.playing&&dt>0){this.time+=dt*this.speed;this.faceTime+=dt*this.speed;this.seekBodyEnd=this.seekFaceEnd=false;this.dirty=true;}
+  if(this.playing&&dt>0){
+   this.time+=dt*this.speed;this.faceTime+=dt*this.speed;this.seekBodyEnd=this.seekFaceEnd=false;this.dirty=true;
+   // 非循环片段播完必须真的停下来：否则 time 越界后 displayTime 永远钳在末帧，
+   // 播放开关看着是开的却毫无反应，只有拖进度条或从头播放能救。
+   const limit=this.duration||this.faceDuration;
+   if(!this.loop&&limit>0&&this.time>=limit){this.time=limit;this.faceTime=Math.min(this.faceTime,this.faceDuration||limit);this.playing=false;}
+  }
   if(!this.dirty){this.updated=false;return false;}
   this.resetPose();const body=this.clips.get(this.body);
   if(body){const time=this.displayTime;for(let i=0;i<this.local.length;i++){const t=this.local[i];this.sample(body,time,i,t.p,t.q,t.s);}if(this.inPlace){const d=body.data;this.local[0].p.x=d[0]*.01;this.local[0].p.z=-d[1]*.01;}}
