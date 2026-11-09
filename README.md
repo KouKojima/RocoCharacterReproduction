@@ -59,10 +59,15 @@
 
 想看效果：运行下面的打包命令生成 `dist/原版人物渲染预览.html`，再双击打开（成品不随仓库分发）。
 
+> **干净 clone 的边界**：仓库里只有源码与文档，足以 `npm install` → 构建出 `app.bundle.js`；
+> 但**离线成品 HTML 需要本机 PAK 提取的游戏素材**（`multi/`、`work/`、`chars/` 等被 `.gitignore` 忽略），
+> clone 下来不能直接生成可打开的成品。PowerShell 的 `cd preview; npm install; cd ..` 这一步不能省。
+
 想自己构建：
 
 ```powershell
-# 1. 需要 .NET 10、Python 3.10+、Node 18+
+# 1. 需要 .NET 10、Python 3.10+、Node 18+；先装前端依赖（锁在 preview/package-lock.json）
+cd preview; npm install; cd ..
 # 2. 把轻量包里的 CUE4Parse-Natives.dll 放到 native/（见 docs/04）
 # 3. 提取角色（--textures / --clips 必须是真实存在的资源名）
 dotnet run --project tools/NrcChar -c Release -- --paks <游戏>\Win64\NRC\Content\Paks --out work\npc06201 --key <base-key.bin> --npc NPC_06201 --textures <...> --clips <...> model textures anim poses dialogue
@@ -87,6 +92,9 @@ python tools/charextract/pack_multi.py --data <out> --code preview
 - 人形动作蒙皮校验：`passed = true`，参考蒙皮误差 1.83e-05 cm，四元数范数误差 1.19e-07，权重和 [1.0, 1.0000001]。
 - 变形目标：`morph-deltas.bin` 的 magic / 偏移 / 顶点数逐目标校验通过；伊里斯 42 个、路易斯 34 个目标，单目标影响 42–524 / 39–457 个顶点；命中真实变形目标的曲线 535 / 125 条，关键帧 16,121 / 2,175 个，插值以 `RCIM_Cubic` 为主（走 Hermite 切线求值）。
 - 浏览器回归：三个角色均 0 console error / 0 warning，142–144 FPS（WebGL 2）。
+- **构建可复现性**（A 组，2026-11-09）：干净 clone → `cd preview && npm install` → `node build.mjs` 通过；
+  `build.mjs` 的 `glsl-eol` 插件让 CRLF 与 LF checkout 产出逐字节相同的 bundle（sha256 `9bd03bb4f…`，
+  559,056 字节）。README 已补上原先漏写的 `npm install` 步骤与「clone 只能构建 bundle、成品需本机素材」的边界。
 - **原版眼睛注视**：`ec_u/v_offset_*` 已从原生 clip 导出，按动作时间轴采样后把**原始值写入眼睛材质 `uMat[6]/[7].z/w` 的 Move* 参数层**（C2，2026-11-08），由逐指令对拍的 PS 施加符号、水平 `UVOffsetScale=2.0` 与按眼选行；P0 的 UV 层 `uGazeOffset` 旁路已移除。离线 `file://` 复核 7 个 GL program 全部链接成功（含 `NRC eyes`）、`glError=0`；`NPC_06201` / `Fight_CallOut` 用**未放大的真实曲线值**做同帧 A/B，眼睛区域 1,067 px 变化（bbox `[563,408,696,434]`），参数槽写入值与 PS 公式逐项吻合（误差 0）。**仍未定案**：「曲线 → Move*」绑定在编译态 C++ / AnimBP，且无原版同帧截图，无法证明曲线值确属参数层；C2 是依据曲线量级与左右曲线几乎相同作出的语义选择，详见 `docs/05`。
 - 表情 A/B（同一帧对照，伊里斯 `World_Dialogue_1`，时间轴 0.567 ≈ t = 2.27 s）：**变形目标开 → 嘴张开、眉毛变化；变形目标关 → 嘴闭合成一条细线、眉毛回到中性。**「对话动作」自带 14 条命中变形目标的曲线，所以选它嘴就会动。
 - 原版面部曲线多通道混合（P1）：参考角色 `NPC_00401` 的表情片段选「原曲线全通道 · controllerConfig」，按原版 `controllerConfig` 把正曲线采样值经符号门控映射到同名 pose 并叠加；108/108 pose 可用，同帧 A/B 脸部区域 2,281 px 变化。路易斯只有 20 个 pose 有非空增量、伊里斯无 PoseAsset，故该选项不会出现在她们的下拉里——限制见 `docs/05`。

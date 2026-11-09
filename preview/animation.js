@@ -97,8 +97,12 @@ class NativeAnimator{
    if(v===0)continue;used++;
    for(const a of attrs){
     const w=v*a.weight;
-    if(a.jawOpen)jawOpen+=w;
-    if(a.blinkScale)blinkScale+=w;
+    // jawOpen / blinkScale are runtime-channel markers, not pose weights.
+    // Their excitation is v(t)*marker, not v(t)*A.weight (A.weight is 0 for
+    // the only jawOpen-bearing attribute, LipTogether). The preview has no
+    // runtime channel to apply them to, so they are observed, never applied.
+    if(a.jawOpen)jawOpen+=v*a.jawOpen;
+    if(a.blinkScale)blinkScale+=v*a.blinkScale;
     // A negative product means the companion _Neg attribute carries this
     // direction. addPose only accepts non-negative weights.
     if(w>0)byPose.set(a.pose,(byPose.get(a.pose)??0)+w);else negativeSkipped++;
