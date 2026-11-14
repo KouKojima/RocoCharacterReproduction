@@ -42,6 +42,20 @@
         "outline": "MI_NPC_06201_Outline",
         "faceOutline": "MI_NPC_Fe_03_Outline"
       }
+    },
+    {
+      "id": "npc02001",
+      "dir": "npc02001",
+      "label": "黑巫师 NPC_02001",
+      "npc": "NPC_02001",
+      "kernel": "npc",
+      "materials": {
+        "body": "MI_NPC_02001",
+        "face": "MI_NPC_02001_Fe",
+        "eyes": "MI_NPC_00401_Es",
+        "outline": "MI_NPC_02001_Outline",
+        "faceOutline": "MI_NPC_Fe_01_Outline"
+      }
     }
   ]
 }
